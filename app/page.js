@@ -1,95 +1,72 @@
 import Image from 'next/image'
-import styles from './page.module.css'
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    return (
+        <main className="">
+            <div className='hero'>
+                <h1 className='title is-1'>Dette er forsiden</h1>
+                <p class="subtitle is-3">Subtitle 3</p>
+            </div>
+            <section className='section columns is-8 is-fullwidth is-variable no-padding'>
+                <div class="column ">
+                    <h2 className='title'>Web</h2>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="column is-flex is-justify-content-center is-align-items-center">
+                    <Image 
+                        src="https://picsum.photos/500/500"
+                        alt="Picture of the author"
+                        width={500}
+                        height={500}
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+                    />
+                </div>
+            </section>
+            <section className='section columns is-8 is-fullwidth is-variable no-padding'>
+                <div class="column ">
+                    <h2 className='title'>Design</h2>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="column is-flex is-justify-content-center is-align-items-center">
+                    <Image 
+                        src="https://picsum.photos/500/500"
+                        alt="Picture of the author"
+                        width={500}
+                        height={500}
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+                    />
+                </div>
+            </section>
+            <section className='section columns is-8 is-fullwidth is-variable no-padding'>
+                <div class="column ">
+                    <h2 className='title'>Billeder</h2>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="column is-flex is-justify-content-center is-align-items-center">
+                    <Image 
+                        src="https://picsum.photos/500/500"
+                        alt="Picture of the author"
+                        width={500}
+                        height={500}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+                    />
+                </div>
+            </section>
+            <section className='section columns is-8 is-fullwidth is-variable no-padding'>
+                <div class="column ">
+                    <h2 className='title'>Ord</h2>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="column is-flex is-justify-content-center is-align-items-center">
+                    <Image 
+                        src="https://picsum.photos/500/500"
+                        alt="Picture of the author"
+                        width={500}
+                        height={500}
+                        className='image'
+                    />
+                </div>
+            </section>
+        </main>
+    )
 }
