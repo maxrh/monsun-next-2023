@@ -1,7 +1,7 @@
 
 const Cases = () => {
     return ( 
-        <main className="">
+        <main>
             <h1>Dette er cases siden</h1>
 
             <h2>Spørgsmål 1</h2>
