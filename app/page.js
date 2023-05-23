@@ -25,7 +25,7 @@ export default function Home() {
 
                     <div className="column is-half">
                         <ImageComponent 
-                            src="https://picsum.photos/1000/1000"
+                            src="https://picsum.photos/id/119/1000/1000"
                             alt="Picture of the author"
                             width={1000}
                             height={1000}
@@ -35,7 +35,7 @@ export default function Home() {
 
                     <div className="column is-half">
                         <ImageComponent 
-                            src="https://picsum.photos/1000/1000"
+                            src="https://picsum.photos/id/20/1000/1000"
                             alt="Picture of the author"
                             width={1000}
                             height={1000}
@@ -52,14 +52,14 @@ export default function Home() {
 
                     <div className="column is-half has-text-right">
                         <div className="p-6">
-                            <h2 className='title'>Web</h2>
+                            <h2 className='title'>Billede</h2>
                             <p>Duis aute irure dolor in reprehenderit.</p>
                         </div>
                     </div>
 
                     <div className="column is-half">
                         <ImageComponent 
-                            src="https://picsum.photos/1000/1000"
+                            src="https://picsum.photos/id/435/1000/1000"
                             alt="Picture of the author"
                             width={1000}
                             height={1000}
@@ -69,7 +69,7 @@ export default function Home() {
 
                     <div className="column is-half">
                         <ImageComponent 
-                            src="https://picsum.photos/1000/1000"
+                            src="https://picsum.photos/id/486/1000/1000"
                             alt="Picture of the author"
                             width={1000}
                             height={1000}
@@ -79,7 +79,7 @@ export default function Home() {
 
                     <div className="column is-half">
                         <div className="p-6">
-                            <h2 className='title'>Design</h2>
+                            <h2 className='title'>Ord</h2>
                             <p>Duis aute irure dolor in reprehenderit.</p>
                         </div>
                     </div>

@@ -5,10 +5,10 @@ import Image from 'next/image'
 
 function ImageComponent({ side, ...props }) {
     const ref = useRef(null);
-    const isInView = useInView(ref, { threshold: 1, margin: "-200px 0px -200px 0px" })
+    const isInView = useInView(ref, { threshold: 1, margin: "-300px 0px -300px 0px" })
 
-    const scale = useSpring(0.5, { stiffness: 300, damping: 10 });
-    const opacity = useSpring(0, { stiffness: 300, damping: 10 });
+    const scale = useSpring(0.5, { stiffness: 200, damping: 10 });
+    const opacity = useSpring(0, { stiffness: 200, damping: 10 });
 
     const boxScale = useSpring(0.5, { stiffness: 200, damping: 10, delay: 200  });
     const boxOpacity = useSpring(0, { stiffness: 200, damping: 10, delay: 200  });
