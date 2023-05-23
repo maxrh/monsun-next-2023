@@ -52,7 +52,7 @@ export default function Home() {
 
                     <div className="column is-half has-text-right">
                         <div className="p-6">
-                            <h2 className='title'>Billede</h2>
+                            <h2 className='title'>Foto</h2>
                             <p>Duis aute irure dolor in reprehenderit.</p>
                         </div>
                     </div>
