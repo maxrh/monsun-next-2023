@@ -1,68 +1,81 @@
 "use client"
 
-import { useRef, useEffect } from "react";
-import { motion, useSpring, useInView, useScroll, useTransform, useMotionValue } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useSpring, useInView, useScroll, useTransform } from "framer-motion";
+import useRandomInRange from '../hooks/useRandomInRange'
 import styles from './imageComponent.module.scss'
 import Image from 'next/image'
 
 function ImageComponent({ side, ...props }) {
     const ref = useRef(null);
     const isInView = useInView(ref, { threshold: 1, margin: "-300px 0px -300px 0px" })
-    
     const { scrollYProgress } = useScroll({ target: ref });
 
-    const scale = useSpring(0.5, { stiffness: 200, damping: 10 });
-    const opacity = useSpring(0, { stiffness: 200, damping: 10 });
+    const degRanges = {
+        modMin: 5, modMax: 10,
+        leftMin: 5, leftMax: 15,
+        rightMin: 355, rightMax: 345
+    }
 
-    const boxScale = useSpring(0.5, { stiffness: 200, damping: 10, delay: 200  });
-    const boxOpacity = useSpring(0, { stiffness: 200, damping: 10, delay: 200  });
+    const initialImageRotateY = side === 'left' ? 0 : 360;
+    const initialBoxRotateY = initialImageRotateY;
+
+    const targetImageRotateY = useRandomInRange(
+        side === 'left' ? degRanges.leftMin : degRanges.rightMin, 
+        side === 'left' ? degRanges.leftMax : degRanges.rightMax, 
+        isInView
+    );
     
-    const minDeg0 = 5, maxDeg0 = 10;
-    const minDeg1 = 5, maxDeg1 = 15;
-    const minDeg2 = 345, maxDeg2 = 355;
+    const boxRotateModifier = useRandomInRange(degRanges.modMin, degRanges.modMax, isInView);
     
-    const boxRotateModifier = Math.floor(Math.random() * (maxDeg0 - minDeg0 + 1)) + minDeg0
-
-    const initialRotateY = side === 'left' ? 0 : 360;
-    const targetRotateY = side === 'left' 
-        ? Math.floor(Math.random() * (maxDeg1 - minDeg1 + 1)) + minDeg1
-        : Math.floor(Math.random() * (maxDeg2 - minDeg2 + 1)) + minDeg2;
-
-
-    const boxInitialRotateY = initialRotateY;
-    const boxTargetRotateY = side === 'left' ? targetRotateY - boxRotateModifier : targetRotateY + boxRotateModifier;
-
-    const initialTranslateX = 0;
-    const targetTranslateX = side === 'left' ? 25 : -15;
-
-    const rotateY = useSpring(initialRotateY, { stiffness: 100, damping: 5, delay: 800 });
-    const translateX = useSpring(initialTranslateX, { stiffness: 100, damping: 5, delay: 800 });
-    const boxRotateY = useSpring(boxInitialRotateY, { stiffness: 100, damping: 5, delay: 1000 });
+    const targetBoxRotateY = side === 'left' ? targetImageRotateY - boxRotateModifier : targetImageRotateY + boxRotateModifier;
+    const targetTranslateX = side === 'left' ? 25 : -25;
 
     const translateYImage = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]); // Adjust the range as needed
     const translateYBox = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]); // Adjust the range as needed
 
-    useEffect(() => {
-        scale.set(isInView ? 1 : 0.5);
-        opacity.set(isInView ? 1 : 0);
-        boxScale.set(isInView ? 1 : 0.5);
-        boxOpacity.set(isInView ? 0.5 : 0);
-        rotateY.set(isInView ? targetRotateY : initialRotateY);
-        translateX.set(isInView ? targetTranslateX : initialTranslateX);
-        boxRotateY.set(isInView ? boxTargetRotateY : boxInitialRotateY);
-    }, [isInView, scale, opacity, rotateY, translateX, boxRotateY]);
+    // spring animations
 
+    const springConfig = { stiffness: 200, damping: 10 };
+
+    const imageScale = useSpring(0, springConfig);
+    const imageOpacity = useSpring(0, springConfig);
+    const imageRotateY = useSpring(initialImageRotateY, { stiffness: 100, damping: 5, delay: 800 });
+
+    const boxScale = useSpring(0, { ...springConfig, delay: 200 });
+    const boxOpacity = useSpring(0, { ...springConfig, delay: 200 });
+    const boxRotateY = useSpring(initialBoxRotateY, { stiffness: 100, damping: 5, delay: 1000 });
+
+    const translateX = useSpring(0, { stiffness: 100, damping: 5, delay: 800 });
+
+    // update animation values when isInView changes
+
+    useEffect(() => {
+
+        if (isInView) {
+            imageScale.set(1); imageOpacity.set(1); imageRotateY.set(targetImageRotateY);
+            boxScale.set(1); boxOpacity.set(0.5); boxRotateY.set(targetBoxRotateY);
+            translateX.set(targetTranslateX);
+        } else {
+            imageScale.set(0); imageOpacity.set(0); imageRotateY.set(initialImageRotateY);
+            boxScale.set(0); boxOpacity.set(0); boxRotateY.set(initialBoxRotateY);
+            translateX.set(0);
+        }
+    
+    }, [isInView]);
+
+    
     return (
         
         <motion.div 
             ref={ref} 
-            style={{ scale: scale, opacity: opacity, translateX }}
+            style={{ scale: imageScale, opacity: imageOpacity, translateX }}
             transition={{ delay: 1 }}
             className={styles.imageContainer}
         >
             <motion.div 
                 className={styles.imageWrapper} 
-                style={{ rotateY,  y: translateYImage }}
+                style={{ rotateY: imageRotateY,  y: translateYImage }}
             >
                 <Image {...props} className={styles.image} />
             </motion.div>
@@ -73,8 +86,8 @@ function ImageComponent({ side, ...props }) {
             >
 
                 <span className={styles.boxText}>
-                    boxRotateY: {boxTargetRotateY}deg <br/>
-                    imageRotateY: {targetRotateY}deg
+                    boxRotateY: {targetBoxRotateY}deg <br/>
+                    imageRotateY: {targetImageRotateY}deg
                 </span>
 
             </motion.div>
