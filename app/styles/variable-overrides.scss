@@ -1,0 +1,13 @@
+@import "bulma/sass/utilities/initial-variables";
+@import "bulma/sass/utilities/functions";
+
+// Override Bulma variables here
+$title-line-height: 1.15;
+$subtitle-line-height: 1.3;
+
+$size-1: 3.75rem;
+$size-2: 3.25rem;  // Modify these values to suit your design
+$size-3: 2.75rem;
+$size-4: 2.25rem;
+$size-5: 1.75rem;
+$size-6: 1.25rem; // Keeps Bulma's original h6 size

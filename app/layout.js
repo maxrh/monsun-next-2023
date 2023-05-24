@@ -1,8 +1,14 @@
 import Header from './components/Header'
-import './globals.scss'
-import { Inter } from 'next/font/google'
+import Footer from './components/Footer'
+import './styles/globals.scss'
+
+import { Inter, IBM_Plex_Sans } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
+const ibmPlexSans = IBM_Plex_Sans({ 
+    weight: ['400', '700'],
+    subsets: ['latin'] 
+})
 
 export const metadata = {
     title: 'Create Next App',
@@ -12,10 +18,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={inter.className}>
-                <div className='container'>
+            <body className={ibmPlexSans.className}>
+                <div className='page-container'>
                     <Header />
                     {children}
+                    <Footer />
                 </div>
             </body>
         </html>
