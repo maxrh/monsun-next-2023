@@ -18,7 +18,8 @@ export default function Home() {
                         <div className="section-text p-6">
                             <span className="section-text-label">
                                 <span>Webudvikling</span>
-                                <span>UX</span>
+                                <span>UX/UI</span>
+                                <span>SEO</span>
                             </span>
                             <h2 className='title is-1 is-spaced'>Sagittis nisl rhoncus mattis urna</h2>
                             <p className='subtitle'>Duis aute irure dolor in reprehenderit.</p>
@@ -31,7 +32,7 @@ export default function Home() {
                             width={1000}
                             height={1000}
                             side="right"
-                            color="#00D4FF"
+                            color="#FF0000"
                         />
                     </div>
                 </div>
