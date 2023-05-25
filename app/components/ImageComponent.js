@@ -9,7 +9,7 @@ import Image from 'next/image'
 
 function ImageComponent({ side, ...props }) {
     const ref = useRef(null);
-    const isInView = useInView(ref, { threshold: 1, margin: "-300px 0px -300px 0px" })
+    const isInView = useInView(ref, { threshold: 1, margin: "-0px 0px -0px 0px" })
     const { scrollYProgress } = useScroll({ target: ref });
 
     const degRanges = {

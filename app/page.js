@@ -30,12 +30,12 @@ export default function Home() {
                                     <li className="list-item"><span>SEO Optimering (Search Engine Optimization) <HiCheckCircle className="icon"/></span></li>
                                     <li className="list-item"><span>Opdatering og vedligeholdelse <HiCheckCircle className="icon"/></span></li>
                                     <li className="list-item"><span>API Integration <HiCheckCircle className="icon"/></span></li>
-                                    <li className="list-item"><span>m. m.</span></li>
+                                    <li className="list-item"><span>o.m.a.</span></li>
                                 </ul>
 
                                 <ul className="is-size-7">
-                                    <li>Frameworks: React, Next.js, Vue.js, Remix mm.</li>
-                                    <li>CMS: WordPress, Drupal, Strapi mm.</li>
+                                    <li>Frameworks: React, Next.js, Vue.js, Remix m.m.</li>
+                                    <li>CMS: WordPress, Drupal, Strapi m.m.</li>
 
                                 </ul>
                             
@@ -48,7 +48,7 @@ export default function Home() {
                             width={1000}
                             height={1000}
                             side="left"
-                            color="#FF0000"
+                            color="#FF003E"
                         />
                     </div>
                 </div>
@@ -100,7 +100,7 @@ export default function Home() {
                             width={1000}
                             height={1000}
                             side="left"
-                            color="Gold"
+                            color="#00B6FF"
                         />
                     </div>
                 </div>
