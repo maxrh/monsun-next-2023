@@ -1,7 +1,8 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useSpring, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, useSpring, useInView, useScroll, useTransform, useAnimation } from "framer-motion";
+import { IoArrowBack } from "react-icons/io5";
 import useRandomInRange from '../hooks/useRandomInRange'
 import styles from './imageComponent.module.scss'
 import Image from 'next/image'
@@ -48,6 +49,15 @@ function ImageComponent({ side, ...props }) {
 
     const translateX = useSpring(0, { stiffness: 100, damping: 5, delay: 800 });
 
+    const boxArrow = side === "left" 
+        ? <IoArrowBack className={styles.boxArrowIcon} style={{ transform: "rotate(180deg) translate(0%, 0%)" }} /> 
+        : <IoArrowBack className={styles.boxArrowIcon} style={{ transform: "translate(0%, 0%)" }}/>;
+
+    const boxArrowTransition = { duration: 2, yoyo: Infinity, ease: "easeInOut" };
+    const boxArrowControls = useAnimation();
+
+   
+
     // update animation values when isInView changes
 
     useEffect(() => {
@@ -73,6 +83,7 @@ function ImageComponent({ side, ...props }) {
             transition={{ delay: 1 }}
             className={styles.imageContainer}
         >
+            
             <motion.div 
                 className={styles.imageWrapper} 
                 style={{ rotateY: imageRotateY,  y: translateYImage }}
@@ -84,12 +95,20 @@ function ImageComponent({ side, ...props }) {
                 className={`${styles.box} ${side === 'left' ? styles.boxLeft : styles.boxRight}`} 
                 style={{ scale: boxScale, opacity: boxOpacity, rotateY: boxRotateY, y: translateYBox, backgroundColor: props.color }}
             >
-
+               
                 <span className={styles.boxText}>
                     boxRotateY: {targetBoxRotateY}deg <br/>
                     imageRotateY: {targetImageRotateY}deg
                 </span>
 
+            </motion.div>
+            <motion.div
+                className={styles.arrowWrapper} 
+                style={{ scale: imageScale, opacity: imageOpacity, translateX, rotateY: imageRotateY, y: translateYBox }}
+            >
+                <span className={styles.boxArrow}>
+                    {boxArrow}
+                </span>
             </motion.div>
         </motion.div>
         

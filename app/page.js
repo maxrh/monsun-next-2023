@@ -1,28 +1,44 @@
 
 import ImageComponent from "./components/ImageComponent"
-import { HiArrowSmallLeft, HiArrowSmallRight, HiArrowSmallDown } from "react-icons/hi2";
+import { HiArrowSmallLeft, HiArrowSmallRight, HiCheckCircle } from "react-icons/hi2";
 
 
 
 export default function Home() {
     return (
         <main className="main container">
-            <div className='hero'>
+            <div className='hero p-6 mb-6'>
                 <h1 className='title is-1'>Monsun</h1>
                 <p className="subtitle is-3">Subtitle 3</p>
             </div>
 
             <section className='section no-padding mb-6'>
-                <div className='columns is-8 is-variable is-vcentered '>
-                    <div className="column is-half has-text-right">
+                <div className='columns is-8 is-variable is-flex-direction-row-reverse'>
+                    <div className="column is-half">
                         <div className="section-text p-6">
                             <span className="section-text-label">
-                                <span>Webudvikling</span>
-                                <span>UX/UI</span>
-                                <span>SEO</span>
+                                <span>Websites</span>
+                                <span>Apps</span>
                             </span>
-                            <h2 className='title is-1 is-spaced'>Sagittis nisl rhoncus mattis urna</h2>
-                            <p className='subtitle'>Duis aute irure dolor in reprehenderit.</p>
+                            <h2 className='title is-1 is-spaced'>Skræddersyet webudvikling</h2>
+                            <p className='subtitle is-5 mb-6'>Vi tilbyder unikke hjemmesider og applikationer skræddersyet til dine specifikationer, alt sammen til en pris der passer til dit budget.</p>
+
+
+                                <ul className="list mb-6">
+                                    <li className="list-item"><span>Gennemtænkt UX/UI Design <HiCheckCircle className="icon"/></span></li>
+                                    <li className="list-item"><span>CMS Implementering (Content Management System) <HiCheckCircle className="icon"/></span></li>
+                                    <li className="list-item"><span>SEO Optimering (Search Engine Optimization) <HiCheckCircle className="icon"/></span></li>
+                                    <li className="list-item"><span>Opdatering og vedligeholdelse <HiCheckCircle className="icon"/></span></li>
+                                    <li className="list-item"><span>API Integration <HiCheckCircle className="icon"/></span></li>
+                                    <li className="list-item"><span>m. m.</span></li>
+                                </ul>
+
+                                <ul className="is-size-7">
+                                    <li>Frameworks: React, Next.js, Vue.js, Remix mm.</li>
+                                    <li>CMS: WordPress, Drupal, Strapi mm.</li>
+
+                                </ul>
+                            
                         </div>
                     </div>
                     <div className="column is-half">
@@ -31,7 +47,7 @@ export default function Home() {
                             alt="Picture of the author"
                             width={1000}
                             height={1000}
-                            side="right"
+                            side="left"
                             color="#FF0000"
                         />
                     </div>
@@ -39,12 +55,12 @@ export default function Home() {
             </section>
 
             <section className='section no-padding mb-6'>
-                <div className='columns is-8 is-variable is-vcentered is-flex-direction-row-reverse'>
+                <div className='columns is-8 is-variable is-vcentered'>
                     <div className="column is-half">
                         <div className="section-text p-6">
                             <span className="section-text-label">
                                 <span>Grafisk design</span>
-                                <span>Layout</span>
+                                <span>Tryksags layout</span>
                             </span>
                             <h2 className='title is-1 is-spaced'>Godt design er enkelt, funktionelt & tidløst</h2>
                             <p className='subtitle'>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -57,7 +73,7 @@ export default function Home() {
                             alt="Picture of the author"
                             width={1000}
                             height={1000}
-                            side="left"
+                            side="right"
                             color="#0000FF"
                         />
                     </div>
@@ -66,8 +82,8 @@ export default function Home() {
             </section>
 
             <section className='section no-padding mb-6'>
-                <div className='columns is-8 is-variable is-vcentered'>
-                    <div className="column is-half has-text-right">
+                <div className='columns is-8 is-variable is-vcentered is-flex-direction-row-reverse'>
+                    <div className="column is-half">
                         <div className="section-text p-6">
                             <span className="section-text-label">
                                 <span>Foto</span>
@@ -83,7 +99,7 @@ export default function Home() {
                             alt="Picture of the author"
                             width={1000}
                             height={1000}
-                            side="right"
+                            side="left"
                             color="Gold"
                         />
                     </div>
@@ -91,7 +107,7 @@ export default function Home() {
             </section>
 
             <section className='section no-padding mb-6'>
-                <div className='columns is-8 is-variable is-vcentered is-flex-direction-row-reverse'>
+                <div className='columns is-8 is-variable is-vcentered'>
 
                     <div className="column is-half">
                         <div className="section-text p-6">
@@ -111,7 +127,7 @@ export default function Home() {
                             alt="Picture of the author"
                             width={1000}
                             height={1000}
-                            side="left"
+                            side="right"
                             color="SpringGreen"
                         />
                     </div>

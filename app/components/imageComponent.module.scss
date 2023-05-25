@@ -26,6 +26,7 @@
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
 }
 
 .box {
@@ -39,10 +40,12 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    transform-style: preserve-3d;
 
     &Text {
+        font-size: 1rem;
         color: #fff;
-        padding: 4rem;
+        padding: 3rem;
     }
 }
 
@@ -53,4 +56,31 @@
 
 .boxRight {
     right: -50px; // Offset horizontally by 50px for right side
+}
+
+
+.arrowWrapper {
+    position: absolute;
+    top:0;
+    left:0;
+    transform-style: preserve-3d;
+    height: 100%;
+    width: 100%;
+}
+
+.boxArrow {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: .8;
+
+    &Icon {
+        width: 300px;
+        height: 300px;
+        fill: #fff;
+        color: #fff;
+    }
+    
 }
