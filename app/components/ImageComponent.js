@@ -53,10 +53,7 @@ function ImageComponent({ side, ...props }) {
         ? <IoArrowBack className={styles.boxArrowIcon} style={{ transform: "rotate(180deg) translate(0%, 0%)" }} /> 
         : <IoArrowBack className={styles.boxArrowIcon} style={{ transform: "translate(0%, 0%)" }}/>;
 
-    const boxArrowTransition = { duration: 2, yoyo: Infinity, ease: "easeInOut" };
-    const boxArrowControls = useAnimation();
 
-   
 
     // update animation values when isInView changes
 
