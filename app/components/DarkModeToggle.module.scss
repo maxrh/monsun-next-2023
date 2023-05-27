@@ -14,33 +14,28 @@
     border-radius: 40px;
     display: grid;
     align-items: center;
-    box-sizing: border-box;
-    
+    justify-content: flex-start;
     cursor: pointer;
 
     html[data-theme="dark"] & {
+        justify-content: flex-end;
         background: #eee;
     }
 }
 
 .handle {
-    height: 22px;
-    width: 22px;
-    display: grid;
-    align-items: center;
-    justify-items: center;
+    height: 20px;
+    width: 20px;
     background: #ddd;
-    justify-self: flex-start;
-    margin: 0 5px;
+    margin: 0 6px;
     border-radius: 40px;
 
     html[data-theme="dark"] & {
         background: #333;
-        justify-self: flex-end;
     }
 
     &[data-isbig="true"] {
-        width: 44px;
+        width: 40px;
     }
 }
 
