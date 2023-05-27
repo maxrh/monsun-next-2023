@@ -9,19 +9,22 @@ export default function Header() {
                 <Link href="/" className="text-4xl font-bold">
                     Logo
                 </Link>
-                <nav className="flex">
-                    <Link href="/" className="mr-8">
-                        Home
-                    </Link>
-                    <Link href="/blog" className="mr-8">
-                        Blog
-                    </Link>
-                    <Link href="/contact">
-                        Contact
-                    </Link>
-                </nav>
 
-                <DarkModeToggle />
+                <div className='is-flex'>
+                    <nav className={styles.navigation}>
+                        <Link href="/" className="mr-8">
+                            Cases
+                        </Link>
+                        <Link href="/blog" className="mr-8">
+                            About
+                        </Link>
+                        <Link href="/contact">
+                            Contact
+                        </Link>
+                    </nav>
+
+                    <DarkModeToggle />
+                </div>
             </div>
         </header>
     )

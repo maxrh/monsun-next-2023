@@ -1,37 +1,64 @@
-.container {
-    height: 40px;
-    width: 100px;
-    background-image: radial-gradient(circle farthest-corner at 10% 20%, 
-                      rgba(253,203,50,1) 0%, 
-                      rgba(244,56,98,1) 100.2%);
-    border-radius: 25px;
+.darkModeWidget {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    font-size: .8rem;
+    width: 200px;
+}
+
+
+.handleContainer {
+    height: 30px;
+    width: 80px;
+    background: #333;
+    border-radius: 40px;
+    display: grid;
+    align-items: center;
     box-sizing: border-box;
-    padding: 0 5px;
+    
     cursor: pointer;
-    transition: all .3s;
 
-
-    &[data-darkmode="true"] {
-        background-color: #52527a;
-        background-image: linear-gradient(109.8deg,
-                        rgba(62,5,116,1) -5.2%, 
-                        rgba(41,14,151,1) -5.2%, 
-                        rgba(216,68,148,1) 103.3%);
+    html[data-theme="dark"] & {
+        background: #eee;
     }
-
 }
 
 .handle {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
+    height: 22px;
+    width: 22px;
     display: grid;
     align-items: center;
     justify-items: center;
-    background-color: #fff;
-    overflow: hidden;
+    background: #ddd;
+    justify-self: flex-start;
+    margin: 0 5px;
+    border-radius: 40px;
+
+    html[data-theme="dark"] & {
+        background: #333;
+        justify-self: flex-end;
+    }
+
+    &[data-isbig="true"] {
+        width: 44px;
+    }
+}
+
+
+
+.darkModeLabel {
+    padding-top: 2px;
+    
+    &::after {
+        content: " Light";
+        font-weight: 600;
+        color: rgb(98, 98, 98);
+
+        html[data-theme="dark"] & {
+            content: " Dark";
+            color: rgb(158, 158, 158)
+        }
+    }
 }
 
 .iconWrap {
@@ -41,14 +68,3 @@
     align-items: center;
     justify-items: center;
 }
-
-
-.toggleIcon {
-    color: #f88748;
-
-    .container[data-darkmode="true"] & {
-        color: #501a96;
-    }
-}
-
-
