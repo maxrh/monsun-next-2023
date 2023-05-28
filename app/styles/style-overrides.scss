@@ -1,10 +1,79 @@
 // Override Bulma styles here
 
-body {
-    font-size: 1.125rem;
+.title {
+    color: var(--body-color);
+    font-weight: 700;
 }
 
-h1, h2, h3, h4, h5, h6, .title {
-  font-weight: 700;
-  margin-bottom: 1rem;
+.subtitle {
+    color: var(--text-light);
 }
+
+.has-text-light {
+    color: var(--text-light) !important;
+}
+
+.has-text-lighter {
+    color: var(--text-lighter) !important;
+}
+
+.border, .border-r, .border-l, .border-t, .border-b {
+    border-color: var(--border-color);
+}
+
+.border {
+    border-width: 1px;
+    border-style: solid;
+}
+
+.border-r {
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+  
+.border-l {
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+
+.border-t {
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+.border-b {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+
+.is-list {
+
+    .border-b:last-child,
+    .border-r:last-child,
+    .border-t:first-child,
+    .border-l:first-child {
+        border: none;
+    }
+}
+
+.section,
+.section.is-medium,
+.section.is-large {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+

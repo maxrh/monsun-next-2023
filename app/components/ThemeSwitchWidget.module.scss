@@ -1,0 +1,62 @@
+@import "../styles/variable-overrides";
+@import "../styles/style-overrides";
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: .8rem;
+}
+
+.label {
+    padding-top: 2px;
+    min-width: 100px;
+    text-align: right;
+    margin-right: 1.5rem;
+    color: var(--text-lighter);
+
+    &::after {
+        content: " Light";
+        font-weight: $weight-medium;
+        color: var(--text-light);
+
+        html[data-theme="dark"] & {
+            content: " Dark";
+        }
+    }
+}
+
+.switch {
+    height: 30px;
+    width: 80px;
+    background: $scheme-invert;
+    border-radius: 60px;
+    display: grid;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+
+    html[data-theme="dark"] & {
+        justify-content: flex-end;
+        background: $scheme-main;
+    }
+
+}
+
+
+.handle {
+    height: 20px;
+    width: 20px;
+    background: $scheme-main;
+    margin: 0 6px;
+    border-radius: 40px;
+
+    html[data-theme="dark"] & {
+        background: $scheme-invert;
+    }
+
+    &[data-isbig="true"] {
+        width: 40px;
+    }
+}
+

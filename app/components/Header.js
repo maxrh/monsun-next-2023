@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from './Header.module.scss'
-import DarkModeToggle from './DarkModeToggle'
+import ThemeSwitchWidget from './ThemeSwitchWidget'
 
 export default function Header() {
     return (
@@ -23,7 +23,7 @@ export default function Header() {
                         </Link>
                     </nav>
 
-                    <DarkModeToggle />
+                    <ThemeSwitchWidget />
                 </div>
             </div>
         </header>

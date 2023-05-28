@@ -9,19 +9,25 @@
         'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
         'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
-    --foreground-rgb: 30, 30, 30;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
+    --body-color: #{$body-color};
+    --body-background-color: #{$body-background-color};
+
+    --text-light: #{$text-light};
+    --text-lighter: #{$text-lighter};
+
+    --border-color: #{$border};
 
 }
 
 html[data-theme='dark'] {
-    
-        --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 25, 25, 25;
-        --background-end-rgb: 25, 25, 25;
-    
-       
+
+    --body-color: #{$body-color-invert};
+    --body-background-color: #{$body-background-color-invert};
+
+    --text-light: #{$text-light-invert};
+    --text-lighter: #{$text-lighter-invert};
+
+    --border-color: #{$border-invert};
 }
 
 * {
@@ -30,13 +36,13 @@ html[data-theme='dark'] {
     margin: 0;
 }
 
+html {
+    letter-spacing: -.001em;
+}
+
 body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(
-        to bottom, 
-        rgb(var(--background-start-rgb)),
-        rgb(var(--background-end-rgb))
-    );
+    color: var(--body-color);
+    background: var(--body-background-color);
 }
 
 a {
@@ -44,10 +50,58 @@ a {
     text-decoration: none;
 }
 
-.title {
-    color: inherit;
+ul {
+    list-style: none;
 }
 
-.subtitle {
-    color: inherit;
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+
+// Typography
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+h1, h1.title {
+    font-size: $size-1;
+}
+
+h2, h2.title {
+    font-size: $size-2;
+}
+
+h3, h3.title {
+    font-size: $size-3;
+}
+
+h4, h4.title {
+    font-size: $size-4;
+}
+
+h5, h5.title {
+    font-size: $size-5;
+}
+
+h6, h6.title {
+    font-size: $size-6;
 }

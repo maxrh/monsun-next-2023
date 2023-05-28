@@ -4,6 +4,10 @@
 // Override Bulma variables here
 $title-line-height: 1.15;
 $subtitle-line-height: 1.3;
+$block-spacing: 2rem;
+
+
+// Typography
 
 $size-1: 3.75rem;
 $size-2: 3.25rem;  // Modify these values to suit your design
@@ -18,7 +22,7 @@ $size-6: 1.25rem; // Keeps Bulma's original h6 size
 $black: rgb(0, 0, 0);
 $white: rgb(255, 255, 255);
 $light: rgb(245, 245, 245);
-$dark: rgb(21, 21, 21);
+$dark: rgb(20, 20, 20);
 $primary: rgb(0, 0, 255);
 $link: $primary;
 $info: rgb(0, 0, 255);
@@ -26,24 +30,23 @@ $success: rgb(0, 255, 0);
 $warning: rgb(255, 255, 0);
 $danger: rgb(255, 0, 0);
 
+$scheme-main: $light;
+$scheme-invert: $dark;
 
-$grey-darker: rgb(75, 75, 75);
-$grey-dark: rgb(102, 102, 102);
-$grey: rgb(128, 128, 128);
-$grey-light: rgb(153, 153, 153);
-$grey-lighter: rgb(191, 191, 191);
-$grey-lightest: rgb(230, 230, 230);
+$border: rgba($scheme-invert, 0.1);
+$border-invert: rgba($scheme-main, 0.1);
 
+$text: $scheme-invert;
+$text-invert: $scheme-main;
 
-$test: 0, 0, 230;
+$text-light: $grey; 
+$text-light-invert: $grey-lighter; 
 
+$text-lighter: $grey-light;
+$text-lighter-invert: $grey-light;
 
+$body-color: $text;
+$body-color-invert: $text-invert;
 
-
-
-
-
-
-
-
-
+$body-background-color: $scheme-main;
+$body-background-color-invert: $scheme-invert;

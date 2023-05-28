@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useLayoutEffect  } from 'react'
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes'
-import styles from './DarkModeToggle.module.scss'; // import the CSS Module
+import styles from './ThemeSwitchWidget.module.scss'; // import the CSS Module
 
-export default function DarkModeToggle() {
+export default function ThemeSwitchWidget() {
     const [mounted, setMounted] = useState(false)
     const [isBig, setIsBig] = useState(false);
     const {theme, setTheme} = useTheme();
@@ -18,13 +18,11 @@ export default function DarkModeToggle() {
         setMounted(true)
     }, []);
 
-
-
     if (!mounted) {
         return (
-            <div className={styles.darkModeWidget}>
-                <span className={`has-text-grey mr-5 ${styles.darkModeLabel}`}>Theme:</span>
-                <div className={styles.handleContainer} >
+            <div className={styles.container}>
+                <span className={styles.label}>Theme:</span>
+                <div className={styles.switch} >
                     <div className={styles.handle} ></div>
                 </div>
             </div>
@@ -32,11 +30,11 @@ export default function DarkModeToggle() {
     }
 
 return (
-    <div className={styles.darkModeWidget}>
-        <span className={`has-text-grey mr-5 ${styles.darkModeLabel}`}>Theme:</span>
+    <div className={styles.container}>
+        <span className={styles.label}>Theme:</span>
 
         <div 
-            className={styles.handleContainer}
+            className={styles.switch}
             onMouseDown={() => setIsBig(true)}
             onMouseUp={() => { toggleTheme(); setIsBig(false); }}
             onMouseLeave={() => setIsBig(false)}

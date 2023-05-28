@@ -2,7 +2,7 @@ export async function GET(request) {
     const services = {
         web: {
             id: '1',
-            title: 'Skræddersyet webudvikling',
+            title: 'Vi skaber digitale oplevelser der virker',
             subtitle: 'Vi tilbyder unikke hjemmesider og applikationer skræddersyet til dine specifikationer, alt sammen til en pris der passer til dit budget.',
             imageUrl: 'https://picsum.photos/id/119/1000/1000',
             overlayColor: '#FF003E',
@@ -26,13 +26,13 @@ export async function GET(request) {
 
         grafik: {
             id: '2',
-            title: 'Godt design er enkelt, funktionelt & tidløst',
+            title: 'Godt design er enkelt, funktionelt og tidloest',
             subtitle: 'Sunt in culpa qui officia deserunt mollit anim id est laborum.',
             imageUrl: 'https://picsum.photos/id/20/1000/1000',
             overlayColor: '#0000FF',
             tags: [
                 'Grafisk design',
-                'Tryksags layout',
+                'Layout',
             ],
         },
 
