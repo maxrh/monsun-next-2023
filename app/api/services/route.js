@@ -3,13 +3,13 @@ export async function GET(request) {
         web: {
             id: '1',
             title: 'Vi skaber digitale oplevelser der virker',
-            subtitle: 'Vi tilbyder unikke hjemmesider og applikationer skræddersyet til dine specifikationer, alt sammen til en pris der passer til dit budget.',
-            imageUrl: 'https://picsum.photos/id/119/1000/1000',
+            subtitle: 'Hjemmesider og applikationer skræddersyet til dine specifikationer, alt sammen til en pris der passer til dit budget.',
+            imageUrl: '/assets/images/strapi_crop.png',
             overlayColor: '#FF003E',
             list: [
                 'Gennemtænkt UX/UI Design',
-                'CMS Implementering (Content Management System)',
-                'SEO Optimering (Search Engine Optimization)',
+                'CMS Implementering',
+                'SEO Optimering',
                 'Opdatering og vedligeholdelse',
                 'API Integration',
             ],
@@ -21,7 +21,18 @@ export async function GET(request) {
                 'Websites',
                 'Apps',
             ],
-
+            slides: [
+                {
+                    id: '1',
+                    text: 'Med Strapi CMS får du fuld kontrol igennem dets brugervenlige interface til nemt at tilpasse og udvide dit indhold. Som open-source CMS, er Strapi både fleksibelt og skalerbart, hvilket sikrer, at din hjemmeside kan vokse og udvikle sig sammen med dine behov.',
+                    author: 'Max Hargreave',
+                    position: 'Monsun Webudvikler',
+                },
+                {
+                    id: '2',
+                    text: 'Vi skaber digitale oplevelser der virker',
+                }
+            ],
         },
 
         grafik: {

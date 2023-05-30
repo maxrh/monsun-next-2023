@@ -1,12 +1,13 @@
 import { HiCheckCircle } from "react-icons/hi2";
 import ImageComponent from "./ImageComponent"
+import styles from './ServiceSection.module.scss'
 
 export default function ServiceSection({ service, reverse }) {
 
     return ( 
-        <section className="section pb-6 mb-6 is-flex">
-            <div className={`columns is-8 pb-6 is-variable ${reverse ? 'is-flex-direction-row-reverse' : ''}`}>
-                <div className={`column is-half pb-6 `}>
+        <section className={`${styles.container} section is-medium is-flex`}>
+            <div className={`columns is-8 is-variable ${reverse ? 'is-flex-direction-row-reverse' : ''}`}>
+                <div className={`column `}>
                     <div className="p-6">
                         <div className="block mb-6">   
                             <span className="block is-list is-flex has-text-light has-text-weight-medium mb-3" >
@@ -16,7 +17,7 @@ export default function ServiceSection({ service, reverse }) {
                             </span>
                         </div>
 
-                        <h1 className='title is-spaced'>{service?.title ? service.title : "Title"}</h1>
+                        <h4 className='title is-spaced'>{service?.title ? service.title : "Title"}</h4>
                         <p className='block subtitle is-5'>{service?.subtitle ? service.subtitle : "Subtitle"}</p>
 
                             {service?.list?.length > 0 && (
@@ -37,14 +38,15 @@ export default function ServiceSection({ service, reverse }) {
                         
                     </div>
                 </div>
-                <div className={`column is-half pb-6 `}>
+                <div className={`column is-three-fifths`}>
                     <ImageComponent 
                         src={service?.imageUrl}
                         alt="Picture of the author"
                         width={1000}
-                        height={1000}
+                        height={625}
                         side={reverse ? 'left' : 'right'}
                         color={service?.overlayColor}
+                        slides={service?.slides}
                     />
                 </div>
             </div>

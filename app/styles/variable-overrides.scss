@@ -4,7 +4,6 @@
 // Override Bulma variables here
 $title-line-height: 1.15;
 $subtitle-line-height: 1.3;
-$block-spacing: 2rem;
 
 
 // Typography
@@ -30,7 +29,7 @@ $success: rgb(0, 255, 0);
 $warning: rgb(255, 255, 0);
 $danger: rgb(255, 0, 0);
 
-$scheme-main: $light;
+$scheme-main: $white;
 $scheme-invert: $dark;
 
 $border: rgba($scheme-invert, 0.1);

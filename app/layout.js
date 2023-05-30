@@ -42,7 +42,8 @@ const soehne = localFont({
 });
 
 const ibmPlexSans = IBM_Plex_Sans({ 
-    weight: ['400', '500', '600', '700'],
+    weight: ['300', '400', '500', '600', '700'],
+    styles: ['normal', 'italic'],
     subsets: ['latin'] 
 })
 
@@ -54,7 +55,7 @@ export const metadata = {
 export default function Layout({ children }) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={soehne.className}>
+            <body className={ibmPlexSans.className}>
                 <Providers>
                     <div className='page-container'>
                         <Header />

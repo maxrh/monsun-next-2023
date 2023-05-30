@@ -14,40 +14,45 @@ function ImageComponent({ side, ...props }) {
 
     const degRanges = {
         modMin: 5, modMax: 10,
-        leftMin: 5, leftMax: 15,
-        rightMin: 355, rightMax: 345
+        min: 5, max: 15,
     }
 
-    const initialImageRotateY = side === 'left' ? 0 : 360;
-    const initialBoxRotateY = initialImageRotateY;
-
-    const targetImageRotateY = useRandomInRange(
-        side === 'left' ? degRanges.leftMin : degRanges.rightMin, 
-        side === 'left' ? degRanges.leftMax : degRanges.rightMax, 
+    const targetImageRotateY = side === 'left' ? 8 : -8
+    
+    const boxRotateModifier = useRandomInRange(
+        degRanges.modMin, 
+        degRanges.modMax, 
         isInView
     );
     
-    const boxRotateModifier = useRandomInRange(degRanges.modMin, degRanges.modMax, isInView);
-    
+    const targetRotate = side === 'left' ? -1 : 1;
     const targetBoxRotateY = side === 'left' ? targetImageRotateY - boxRotateModifier : targetImageRotateY + boxRotateModifier;
     const targetTranslateX = side === 'left' ? 25 : -25;
 
-    const translateYImage = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]); // Adjust the range as needed
-    const translateYBox = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]); // Adjust the range as needed
+
+    const translateYImage = useTransform(scrollYProgress, [0, 0.5, 1], [65, 0, -20]); // Adjust the range as needed
+    const translateYBox = useTransform(scrollYProgress, [0, 0.5, 1], [65, 0, -20]); // Adjust the range as needed
 
     // spring animations
 
-    const springConfig = { stiffness: 200, damping: 10 };
+    const springConfig = { stiffness: 200, damping: 20 };
+
+    const shadowScale = useSpring(0, { ...springConfig, delay: 100 });
+    const shadowOpacity = useSpring(0, { ...springConfig, delay: 100 });
+    const shadowRotateY = useSpring(0, { ...springConfig, delay: 100 });
 
     const imageScale = useSpring(0, springConfig);
     const imageOpacity = useSpring(0, springConfig);
-    const imageRotateY = useSpring(initialImageRotateY, { stiffness: 100, damping: 5, delay: 800 });
+    const imageRotateY = useSpring(0, springConfig);
 
-    const boxScale = useSpring(0, { ...springConfig, delay: 200 });
-    const boxOpacity = useSpring(0, { ...springConfig, delay: 200 });
-    const boxRotateY = useSpring(initialBoxRotateY, { stiffness: 100, damping: 5, delay: 1000 });
+    const rotate = useSpring(0, springConfig);
+    const rotateX = useSpring(0, springConfig);
 
-    const translateX = useSpring(0, { stiffness: 100, damping: 5, delay: 800 });
+    const boxScale = useSpring(0, { ...springConfig, delay: 800 });
+    const boxOpacity = useSpring(0, { ...springConfig, delay: 800 });
+    const boxRotateY = useSpring(0, { ...springConfig, delay: 800 });
+
+    const translateX = useSpring(0, springConfig);
 
     const boxArrow = side === "left" 
         ? <IoArrowBack className={styles.boxArrowIcon} style={{ transform: "rotate(180deg) translate(0%, 0%)" }} /> 
@@ -60,12 +65,14 @@ function ImageComponent({ side, ...props }) {
     useEffect(() => {
 
         if (isInView) {
-            imageScale.set(1); imageOpacity.set(1); imageRotateY.set(targetImageRotateY);
-            boxScale.set(1); boxOpacity.set(0.5); boxRotateY.set(targetBoxRotateY);
+            imageScale.set(1); imageOpacity.set(1); imageRotateY.set(targetImageRotateY); rotateX.set(2); rotate.set(targetRotate); 
+            shadowScale.set(.96); shadowOpacity.set(.5); shadowRotateY.set(targetImageRotateY);
+            boxScale.set(1); boxOpacity.set(1); boxRotateY.set(targetBoxRotateY);
             translateX.set(targetTranslateX);
         } else {
-            imageScale.set(0); imageOpacity.set(0); imageRotateY.set(initialImageRotateY);
-            boxScale.set(0); boxOpacity.set(0); boxRotateY.set(initialBoxRotateY);
+            imageScale.set(0); imageOpacity.set(0); imageRotateY.set(0); rotateX.set(0); rotate.set(0); 
+            shadowScale.set(0); shadowOpacity.set(0); shadowRotateY.set(0);
+            boxScale.set(0); boxOpacity.set(0); boxRotateY.set(0);
             translateX.set(0);
         }
     
@@ -76,37 +83,44 @@ function ImageComponent({ side, ...props }) {
         
         <motion.div 
             ref={ref} 
-            style={{ scale: imageScale, opacity: imageOpacity, translateX }}
+            style={{ translateX }}
             transition={{ delay: 1 }}
-            className={styles.imageContainer}
+            className={styles.container}
         >
-            
+            <motion.div 
+                className={`${styles.box} ${side === 'left' ? styles.boxLeft : styles.boxRight}`} 
+                style={{ scale: boxScale, opacity: boxOpacity, rotate, rotateY: imageRotateY, rotateX, y: translateYBox }}
+            >
+               
+               {props.slides && props.slides.length > 0 && (
+                    <div className={styles.slide}>
+                        <p className={styles.slideText}>{props.slides[0].text}</p>
+                    </div>
+                )}
+            </motion.div>
+
             <motion.div 
                 className={styles.imageWrapper} 
-                style={{ rotateY: imageRotateY,  y: translateYImage }}
+                style={{ scale: imageScale, opacity: imageOpacity, rotate, rotateY: imageRotateY, rotateX,  y: translateYImage }}
             >
                 <Image {...props} className={styles.image} />
             </motion.div>
 
             <motion.div 
-                className={`${styles.box} ${side === 'left' ? styles.boxLeft : styles.boxRight}`} 
-                style={{ scale: boxScale, opacity: boxOpacity, rotateY: boxRotateY, y: translateYBox, backgroundColor: props.color }}
+                className={styles.imageShadow} 
+                style={{ scale: shadowScale, opacity: shadowOpacity, rotate, rotateY: shadowRotateY, rotateX: 0, y: 0 }}
             >
-               
-                <span className={styles.boxText}>
-                    boxRotateY: {targetBoxRotateY}deg <br/>
-                    imageRotateY: {targetImageRotateY}deg
-                </span>
-
             </motion.div>
-            <motion.div
+
+            
+            {/* <motion.div
                 className={styles.arrowWrapper} 
-                style={{ scale: imageScale, opacity: imageOpacity, translateX, rotateY: imageRotateY, y: translateYBox }}
+                style={{ scale: imageScale, opacity: imageOpacity, translateX, rotate, rotateY: imageRotateY, y: translateYBox }}
             >
                 <span className={styles.boxArrow}>
                     {boxArrow}
                 </span>
-            </motion.div>
+            </motion.div> */}
         </motion.div>
         
     )
