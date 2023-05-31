@@ -8,22 +8,17 @@ const getServices = async () => {
 }
 
 export default async function Home() {
-
     const services = await getServices()
 
-
     return (
+
         <main className="main container">
-            <div className='hero p-6 mb-6'>
-                <h1 className='title is-1'>Monsun</h1>
-                <p className="subtitle is-3">Subtitle 3</p>
-            </div>
-            
-            <ServiceSection service={services.web} reverse />
-            <ServiceSection service={services.grafik} />
-            <ServiceSection service={services.foto} reverse />
-            <ServiceSection service={services.ord} />
+            {services.web && <ServiceSection serviceName={"web"} service={services.web} reverse />}
+            {services.grafik && <ServiceSection serviceName={"grafik"} service={services.grafik} />}
+            {services.foto && <ServiceSection serviceName={"foto"} service={services.foto} reverse />}
+            {services.ord && <ServiceSection serviceName={"ord"} service={services.ord} />}
 
         </main>
+
     )
 }

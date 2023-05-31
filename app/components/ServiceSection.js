@@ -1,11 +1,29 @@
+"use client"
+
+import { useContext, useEffect, useRef } from 'react';
+import { useInView  } from 'framer-motion';
 import { HiCheckCircle } from "react-icons/hi2";
 import ImageComponent from "./ImageComponent"
 import styles from './ServiceSection.module.scss'
+import ScrollContext from '../context/ScrollContext';
 
-export default function ServiceSection({ service, reverse }) {
+export default function ServiceSection( props ) {
+
+    const { serviceName, service, reverse } = props;
+
+    const { setSectionInView } = useContext(ScrollContext);
+
+    const ref = useRef(null);
+    const isInView = useInView(ref, { amount: 0.5 });
+
+    useEffect(() => {
+        if (isInView) {
+            setSectionInView(serviceName);
+        }
+    }, [isInView]);   
 
     return ( 
-        <section className={`${styles.container} section is-medium is-flex`}>
+        <section id={serviceName} ref={ref} className={`${styles.container} section is-medium is-flex`}>
             <div className={`columns is-8 is-variable ${reverse ? 'is-flex-direction-row-reverse' : ''}`}>
                 <div className={`column `}>
                     <div className="p-6">
@@ -17,7 +35,7 @@ export default function ServiceSection({ service, reverse }) {
                             </span>
                         </div>
 
-                        <h4 className='title is-spaced'>{service?.title ? service.title : "Title"}</h4>
+                        <h1 className='title is-spaced is-3 has-text-primary'>{service?.title ? service.title : "Title"}</h1>
                         <p className='block subtitle is-5'>{service?.subtitle ? service.subtitle : "Subtitle"}</p>
 
                             {service?.list?.length > 0 && (

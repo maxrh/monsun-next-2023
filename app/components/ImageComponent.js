@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useEffect } from "react";
-import { motion, useSpring, useInView, useScroll, useTransform, useAnimation } from "framer-motion";
+import { motion, useSpring, useInView, useScroll, useTransform } from "framer-motion";
 import { IoArrowBack } from "react-icons/io5";
 import useRandomInRange from '../hooks/useRandomInRange'
 import styles from './imageComponent.module.scss'
