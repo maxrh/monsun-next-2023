@@ -17,23 +17,15 @@ export default function NavAnchorMenu() {
         console.log(sectionInView);
     }, [sectionInView]);
 
-    const inViewStyle = { color: 'red' };  // Example style for when a section is in view.
   
 return (
         <div className={`${styles.container} navbar-start ml-6`}>
-            <Link href="/" className="navbar-item" scroll={false}>Overview</Link>
-            <Link href="#web" className="navbar-item" scroll={false}>
-                <motion.span style={inView === 'web' ? inViewStyle : {}}>Web</motion.span>
-            </Link>
-            <Link href="#grafik" className="navbar-item" scroll={false}>
-                <motion.span style={inView === 'grafik' ? inViewStyle : {}}>Grafik</motion.span>
-            </Link>
-            <Link href="#foto" className="navbar-item" scroll={false}>
-                <motion.span style={inView === 'foto' ? inViewStyle : {}}>Foto</motion.span>
-            </Link>
-            <Link href="#ord" className="navbar-item" scroll={false}>
-                <motion.span style={inView === 'ord' ? inViewStyle : {}}>Ord</motion.span>
-            </Link>
+
+            <Link href="#" className="navbar-item" scroll={false}>Top</Link>
+            <Link href="#web" className={`navbar-item ${inView === 'web' ? 'is-active' : ''}`} scroll={false}>Web</Link>
+            <Link href="#grafik" className={`navbar-item ${inView === 'grafik' ? 'is-active' : ''}`} scroll={false}>Grafik</Link>
+            <Link href="#foto" className={`navbar-item ${inView === 'foto' ? 'is-active' : ''}`} scroll={false}>Foto</Link>
+            <Link href="#ord" className={`navbar-item ${inView === 'ord' ? 'is-active' : ''}`} scroll={false}>Ord</Link>
         
         </div>
     )
