@@ -17,6 +17,18 @@
     color: var(--text-lighter) !important;
 }
 
+.is-theme-color {
+    background-color: var(--body-background-color);
+}
+
+.is-background-light {
+    background-color: var(--body-background-color-light);
+}
+
+.is-background-transparent {
+    background-color: transparent;
+}
+
 .border, .border-r, .border-l, .border-t, .border-b {
     border-color: var(--border-color);
 }
@@ -77,3 +89,16 @@
 }
 
 
+// navbar override
+
+.navbar-item, .navbar-link {
+    color: inherit;
+}
+
+.tabs a {
+    color: inherit;
+}
+
+a.navbar-item.is-active, .navbar-link.is-active {
+    color: var(--theme-primary-color);
+}
