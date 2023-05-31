@@ -30,8 +30,8 @@ function ImageComponent({ side, ...props }) {
     const targetTranslateX = side === 'left' ? 25 : -25;
 
 
-    const translateYImage = useTransform(scrollYProgress, [0, 0.5, 1], [65, 0, -20]); // Adjust the range as needed
-    const translateYBox = useTransform(scrollYProgress, [0, 0.5, 1], [65, 0, -20]); // Adjust the range as needed
+    const translateYImage = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]); // Adjust the range as needed
+    const translateYBox = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]); // Adjust the range as needed
 
     // spring animations
 
@@ -66,7 +66,7 @@ function ImageComponent({ side, ...props }) {
 
         if (isInView) {
             imageScale.set(1); imageOpacity.set(1); imageRotateY.set(targetImageRotateY); rotateX.set(2); rotate.set(targetRotate); 
-            shadowScale.set(.96); shadowOpacity.set(.5); shadowRotateY.set(targetImageRotateY);
+            shadowScale.set(.98); shadowOpacity.set(.5); shadowRotateY.set(targetImageRotateY);
             boxScale.set(1); boxOpacity.set(1); boxRotateY.set(targetBoxRotateY);
             translateX.set(targetTranslateX);
         } else {
