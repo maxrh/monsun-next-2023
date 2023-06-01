@@ -2,31 +2,40 @@
 
 import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link'
-import { motion  } from 'framer-motion';
 import ScrollContext from '../context/ScrollContext';
-
 import styles from './NavAnchorMenu.module.scss'
+import { IoChevronForward } from "react-icons/io5";
 
-export default function NavAnchorMenu() {
+export default function NavAnchorMenu({ isScrolled }) {
 
     const { sectionInView } = useContext(ScrollContext);
     const [inView, setInView] = useState(false);
 
     useEffect(() => {
         setInView(sectionInView);
-        console.log(sectionInView);
     }, [sectionInView]);
 
-  
-return (
-        <div className={`${styles.container} navbar-start ml-6`}>
+    const isBrowser = () => typeof window !== 'undefined'; 
 
-            <Link href="#" className="navbar-item" scroll={false}>Top</Link>
-            <Link href="#web" className={`navbar-item ${inView === 'web' ? 'is-active' : ''}`} scroll={false}>Web</Link>
-            <Link href="#grafik" className={`navbar-item ${inView === 'grafik' ? 'is-active' : ''}`} scroll={false}>Grafik</Link>
-            <Link href="#foto" className={`navbar-item ${inView === 'foto' ? 'is-active' : ''}`} scroll={false}>Foto</Link>
-            <Link href="#ord" className={`navbar-item ${inView === 'ord' ? 'is-active' : ''}`} scroll={false}>Ord</Link>
-        
-        </div>
-    )
+    const scrollToTop = (event) => {
+        event.preventDefault();
+        if (!isBrowser()) return;
+        window.scrollTo({ top: 0 });
+    }
+  
+    return (
+            <ul className={`${styles.container} anchor-menu`}>
+
+                <li><Link href="#" onClick={scrollToTop} className={`navbar-item ${isScrolled ? '' : 'is-active'}`} scroll={false}>Intro</Link></li>
+                <IoChevronForward className={styles.divider} />
+                <li><Link href="#web" className={`navbar-item ${isScrolled && inView === 'web' ? 'is-active' : ''}`} scroll={false}>Web</Link></li>
+                <IoChevronForward className={styles.divider} />
+                <li><Link href="#grafik" className={`navbar-item ${isScrolled && inView === 'grafik' ? 'is-active' : ''}`} scroll={false}>Grafik</Link></li>
+                <IoChevronForward className={styles.divider} />
+                <li><Link href="#foto" className={`navbar-item ${isScrolled && inView === 'foto' ? 'is-active' : ''}`} scroll={false}>Foto</Link></li>
+                <IoChevronForward className={styles.divider} />
+                <li><Link href="#ord" className={`navbar-item ${isScrolled && inView === 'ord' ? 'is-active' : ''}`} scroll={false}>Ord</Link></li>
+            
+            </ul>
+        )
 }

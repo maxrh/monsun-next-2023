@@ -87,40 +87,37 @@ function ImageComponent({ side, ...props }) {
             transition={{ delay: 1 }}
             className={styles.container}
         >
-            <motion.div 
-                className={`${styles.box} ${side === 'left' ? styles.boxLeft : styles.boxRight}`} 
-                style={{ scale: boxScale, opacity: boxOpacity, rotate, rotateY: imageRotateY, rotateX, y: translateYBox }}
-            >
-               
-               {props.slides && props.slides.length > 0 && (
-                    <div className={styles.slide}>
-                        <p className={styles.slideText}>{props.slides[0].text}</p>
-                    </div>
-                )}
-            </motion.div>
-
-            <motion.div 
-                className={styles.imageWrapper} 
-                style={{ scale: imageScale, opacity: imageOpacity, rotate, rotateY: imageRotateY, rotateX,  y: translateYImage }}
-            >
-                <Image {...props} className={styles.image} />
-            </motion.div>
-
-            <motion.div 
-                className={styles.imageShadow} 
-                style={{ scale: shadowScale, opacity: shadowOpacity, rotate, rotateY: shadowRotateY, rotateX: 0, y: 0 }}
-            >
-            </motion.div>
-
             
-            {/* <motion.div
-                className={styles.arrowWrapper} 
-                style={{ scale: imageScale, opacity: imageOpacity, translateX, rotate, rotateY: imageRotateY, y: translateYBox }}
-            >
-                <span className={styles.boxArrow}>
-                    {boxArrow}
-                </span>
-            </motion.div> */}
+                <motion.div 
+                    className={`${styles.box} ${side === 'left' ? styles.boxLeft : styles.boxRight}`} 
+                    style={{ scale: boxScale, opacity: boxOpacity, rotate, rotateY: imageRotateY, rotateX, y: translateYBox }}
+                >
+                
+                {props.slides && props.slides.length > 0 && (
+                        <div className={styles.slide}>
+                            <p className={styles.slideText}>{props.slides[0].text}</p>
+                        </div>
+                    )}
+                </motion.div>
+
+                        <motion.div 
+                            className={styles.imageWrapper} 
+                            style={{ scale: imageScale, opacity: imageOpacity, rotate, rotateY: imageRotateY, rotateX,  y: translateYImage }}
+                        >
+                            
+                            <div className={styles.ratio}>
+                                <Image {...props} className={`${styles.image} ${styles.ratioInner}`} />
+                            </div>
+                        </motion.div>
+                   
+                   
+                <motion.div 
+                    className={`${styles.imageShadow} ${styles.ratio}`} 
+                    style={{ scale: shadowScale, opacity: shadowOpacity, rotate, rotateY: shadowRotateY, rotateX: 0, y: 0 }}
+                >
+                    <div className={styles.ratioInner} ></div>
+                </motion.div>
+            
         </motion.div>
         
     )

@@ -48,8 +48,8 @@ return (
 
                 transition={{ 
                     type: "spring",
-                    stiffness: 700,
-                    damping: 20,
+                    stiffness: 600,
+                    damping: 50,
                 }}
                             
             ></motion.div>

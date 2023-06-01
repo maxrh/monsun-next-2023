@@ -21,22 +21,27 @@ $size-6: 1rem; // Keeps Bulma's original h6 size
 $black: rgb(0, 0, 0);
 $white: rgb(255, 255, 255);
 $light: rgb(245, 245, 245);
-$dark: rgb(20, 20, 20);
-$primary: #007BFF;
+$dark: rgb(31, 41, 55);
+$primary: #ff4f5e;
 $link: $primary;
 $info: rgb(0, 0, 255);
 $success: rgb(0, 255, 0);
 $warning: rgb(255, 255, 0);
 $danger: rgb(255, 0, 0);
 
+$theme-lightest: rgb(176, 190, 208);
+$theme-dark: rgb(25, 33, 44);
+$theme-darker: rgb(18, 23, 31);
+$theme-darkest: rgb(10, 13, 18);
+
 $scheme-main: $white;
-$scheme-invert: $dark;
+$scheme-invert: $theme-dark;
 
 $border: rgba($scheme-invert, 0.1);
 $border-invert: rgba($scheme-main, 0.1);
 
-$text: $scheme-invert;
-$text-invert: $scheme-main;
+$text: $grey-dark;
+$text-invert: $grey-lighter;
 
 $text-light: $grey; 
 $text-light-invert: $grey-lighter; 
@@ -51,4 +56,7 @@ $body-background-color: $scheme-main;
 $body-background-color-invert: $scheme-invert;
 
 $body-background-color-light:  $white-ter;
-$body-background-color-light-invert: $black-ter;
+$body-background-color-light-invert: $theme-darker;
+
+$body-background-color-lighter:  $grey-lighter;
+$body-background-color-lighter-invert:  $theme-darkest;

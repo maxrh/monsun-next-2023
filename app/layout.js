@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react';
-import { Providers } from './providers'
+import { ThemeProviders } from './themeProviders'
 import ScrollContext from './context/ScrollContext';
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -26,9 +26,9 @@ export default function Layout({ children }) {
     const [sectionInView, setSectionInView] = useState("");
 
     return (
-        <html lang="en" className="has-navbar-fixed-top" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning>
             <body className={ibmPlexSans.className}>
-                <Providers>
+                <ThemeProviders>
                     <ScrollContext.Provider value={{ sectionInView, setSectionInView }}>
                         <div className='page-container'>
                             <Header />
@@ -36,7 +36,7 @@ export default function Layout({ children }) {
                             <Footer />
                         </div>
                     </ScrollContext.Provider>
-                </Providers>
+                </ThemeProviders>
             </body>
         </html>
     )

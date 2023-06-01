@@ -37,7 +37,7 @@ export async function GET(request) {
 
         grafik: {
             id: '2',
-            title: 'Godt design er enkelt, funktionelt og tidloest',
+            title: 'Godt design er enkelt, funktionelt og tidløst',
             subtitle: 'Sunt in culpa qui officia deserunt mollit anim id est laborum.',
             imageUrl: 'https://picsum.photos/id/20/1000/1000',
             overlayColor: '#0000FF',

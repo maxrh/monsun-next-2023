@@ -23,8 +23,8 @@ export default function ServiceSection( props ) {
     }, [isInView]);   
 
     return ( 
-        <section id={serviceName} ref={ref} className={`${styles.container} section is-medium is-flex`}>
-            <div className={`columns is-8 is-variable ${reverse ? 'is-flex-direction-row-reverse' : ''}`}>
+        <section id={serviceName} ref={ref} className={`${styles.container} section is-medium`}>
+            <div className={`columns is-8 is-variable is-desktop is-flex-wrap-wrap ${reverse ? 'is-flex-direction-row-reverse' : ''}`}>
                 <div className={`column `}>
                     <div className="p-6">
                         <div className="block mb-6">   
@@ -61,7 +61,7 @@ export default function ServiceSection( props ) {
                         src={service?.imageUrl}
                         alt="Picture of the author"
                         width={1000}
-                        height={625}
+                        height={612}
                         side={reverse ? 'left' : 'right'}
                         color={service?.overlayColor}
                         slides={service?.slides}
