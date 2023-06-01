@@ -42,7 +42,7 @@ export default function Header() {
                         className="navbar is-fixed-top" 
                         role="navigation" 
                         aria-label="main navigation"
-                        animate={{ padding: isScrolled ? '0rem 1rem' : '1rem 1rem' }}
+                        animate={{ padding: isScrolled ? '0rem 1rem' : '1rem 1rem', backgroundColor: isScrolled ? 'var(--body-background-color-light)' : 'transparent' }}
                         initial={{ padding: '1rem 1rem' }}
                         transition={{ duration: .25 }}
                     >
@@ -101,8 +101,12 @@ export default function Header() {
                     transition={{ duration: .15 }} 
                 >
                     
-                    <h1 className='title is-1'>Monsun</h1>
-                    <p className="subtitle is-3">Subtitle 3</p>
+                    <h1 className='page-title'>
+
+                        Lorem ipsum is placeholder text commonly used in the graphic, print, and <span> Monsun</span> industries for previewing layouts and visual mockups
+                    
+                    
+                    </h1>
                 </motion.div>
 
                 <div className="hero-foot">

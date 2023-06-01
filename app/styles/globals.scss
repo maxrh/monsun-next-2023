@@ -171,3 +171,25 @@ h6, h6.title {
     align-items: center;
     justify-content: center;
   }
+
+  .page-title {
+    font-size: 8rem;
+    font-weight: 700;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-52%, -56%);
+    color: var(--body-background-color);
+    text-transform: lowercase;
+    letter-spacing: -0.1em;
+    line-height: .6;
+    width: 100%;
+    
+    word-wrap: break-word;
+
+    span {
+        color: $primary;
+    }
+  }
