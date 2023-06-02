@@ -74,7 +74,11 @@ body {
     color: var(--body-color);
     background: var(--body-background-color);
     font-size: 17px;
-    z-index: -30;
+    z-index: 0;
+}
+
+.main {
+    z-index: 1;
 }
 
 a {
@@ -150,6 +154,8 @@ h6, h6.title {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1000;
+
 }
 
 .site-header .hero {
@@ -195,7 +201,7 @@ h6, h6.title {
 
     .hero-foot {
         .navbar {
-            z-index: 10;
+            z-index: 30;
         }
     }
 }
@@ -259,12 +265,28 @@ h6, h6.title {
 }
 
   
-.mysquares {
+.bg-squares {
     position: absolute;
-    top: 0;
+    top:  var(--site-header-height);
+    bottom: 0;
     left: 50%;
-    height: 100%;
     transform: translateX(-50%);
     width: 100vw;
+    z-index: -1;
 
+    .square {
+        background-color: var(--body-background-color-light);
+    }
+}
+
+.hero-squares {
+    position: absolute;
+    top:  0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    
+    .square {
+        background-color: var(--body-background-color);
+    }
 }

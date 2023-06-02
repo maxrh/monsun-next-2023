@@ -7,6 +7,7 @@ import Link from 'next/link'
 import styles from './Header.module.scss'
 import ThemeSwitchWidget from './ThemeSwitchWidget'
 import NavAnchorMenu from './NavAnchorMenu'
+import SquaresGrid from "./SquaresGrid";
 
 
 export default function Header() {
@@ -111,6 +112,7 @@ export default function Header() {
                     
                     
                     </h1>
+
                 </motion.div>
 
                 <div className="hero-foot">
@@ -129,6 +131,8 @@ export default function Header() {
                         </nav>
                     
                 </div>
+                <SquaresGrid className="hero-squares" size={10} gap={45} />
+
             </section>
         </header>
     )

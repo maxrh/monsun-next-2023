@@ -18,7 +18,7 @@ export default async function Home() {
             {services.grafik && <ServiceSection serviceName={"grafik"} service={services.grafik} />}
             {services.foto && <ServiceSection serviceName={"foto"} service={services.foto} reverse />}
             {services.ord && <ServiceSection serviceName={"ord"} service={services.ord} />}
-            <SquaresGrid className="mysquares" size={10} gap={50} />
+            <SquaresGrid className="bg-squares" size={10} gap={45} />
 
         </main>
 
