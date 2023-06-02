@@ -27,13 +27,9 @@ export default function NavAnchorMenu({ isScrolled }) {
             <ul className={`${styles.container} anchor-menu`}>
 
                 <li><Link href="#" onClick={scrollToTop} className={`navbar-item ${isScrolled ? '' : 'is-active'}`} scroll={false}>Intro</Link></li>
-                <IoChevronForward className={styles.divider} />
                 <li><Link href="#web" className={`navbar-item ${isScrolled && inView === 'web' ? 'is-active' : ''}`} scroll={false}>Web</Link></li>
-                <IoChevronForward className={styles.divider} />
                 <li><Link href="#grafik" className={`navbar-item ${isScrolled && inView === 'grafik' ? 'is-active' : ''}`} scroll={false}>Grafik</Link></li>
-                <IoChevronForward className={styles.divider} />
                 <li><Link href="#foto" className={`navbar-item ${isScrolled && inView === 'foto' ? 'is-active' : ''}`} scroll={false}>Foto</Link></li>
-                <IoChevronForward className={styles.divider} />
                 <li><Link href="#ord" className={`navbar-item ${isScrolled && inView === 'ord' ? 'is-active' : ''}`} scroll={false}>Ord</Link></li>
             
             </ul>

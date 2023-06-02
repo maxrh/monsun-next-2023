@@ -27,11 +27,11 @@ function ImageComponent({ side, ...props }) {
     
     const targetRotate = side === 'left' ? -1 : 1;
     const targetBoxRotateY = side === 'left' ? targetImageRotateY - boxRotateModifier : targetImageRotateY + boxRotateModifier;
-    const targetTranslateX = side === 'left' ? 25 : -25;
+    const targetTranslateX = side === 'left' ? 15 : -15;
 
 
-    const translateYImage = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]); // Adjust the range as needed
-    const translateYBox = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]); // Adjust the range as needed
+    const translateYImage = useTransform(scrollYProgress, [0, 0.5,  1], [30, 0, -30]); // Adjust the range as needed
+    const translateYBox = useTransform(scrollYProgress, [0, 0.5, 1], [30, 0, -30]); // Adjust the range as needed
 
     // spring animations
 
@@ -66,7 +66,7 @@ function ImageComponent({ side, ...props }) {
 
         if (isInView) {
             imageScale.set(1); imageOpacity.set(1); imageRotateY.set(targetImageRotateY); rotateX.set(2); rotate.set(targetRotate); 
-            shadowScale.set(.98); shadowOpacity.set(.5); shadowRotateY.set(targetImageRotateY);
+            shadowScale.set(.98); shadowOpacity.set(1); shadowRotateY.set(targetImageRotateY);
             boxScale.set(1); boxOpacity.set(1); boxRotateY.set(targetBoxRotateY);
             translateX.set(targetTranslateX);
         } else {
@@ -89,7 +89,7 @@ function ImageComponent({ side, ...props }) {
         >
             
                 <motion.div 
-                    className={`${styles.box} ${side === 'left' ? styles.boxLeft : styles.boxRight}`} 
+                    className={`${styles.box} ${side === 'left' ? styles.boxLeft : styles.boxRight} is-size-7`} 
                     style={{ scale: boxScale, opacity: boxOpacity, rotate, rotateY: imageRotateY, rotateX, y: translateYBox }}
                 >
                 
@@ -112,7 +112,7 @@ function ImageComponent({ side, ...props }) {
                    
                    
                 <motion.div 
-                    className={`${styles.imageShadow} ${styles.ratio}`} 
+                    className={`${styles.imageShadow} ${styles.ratio} ${side === 'left' ? styles.imageShadowReversed : ''}`} 
                     style={{ scale: shadowScale, opacity: shadowOpacity, rotate, rotateY: shadowRotateY, rotateX: 0, y: 0 }}
                 >
                     <div className={styles.ratioInner} ></div>

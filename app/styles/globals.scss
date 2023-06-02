@@ -11,6 +11,7 @@
 
     --body-color: #{$body-color};
     --body-background-color: #{$body-background-color};
+    --body-background-color-transparent: #{$body-background-color-transparent};
 
     --body-background-color-light: #{$body-background-color-light};
     --body-background-color-light-invert: #{$body-background-color-light-invert};
@@ -26,13 +27,25 @@
 
     --theme-primary-color: #{$primary};
 
+    --navbar-height: #{$navbar-height};
+    --navbar-big-height: #{$navbar-big-height};
+
+    --site-header-height: #{$site-header-height};
+    --site-header-big-height: #{$site-header-big-height};
+    --site-header-small-height: #{$site-header-small-height};
+
+    --navbar-shadow: #{$navbar-shadow};
 
 }
 
 html[data-theme='dark'] {
 
     --body-color: #{$body-color-invert};
+
     --body-background-color: #{$body-background-color-invert};
+    --body-background-color-transparent: #{$body-background-color-transparent-invert};
+
+
     --body-background-color-light: #{$body-background-color-light-invert};
     --body-background-color-light-invert: #{$body-background-color-light};
 
@@ -40,6 +53,9 @@ html[data-theme='dark'] {
     --text-lighter: #{$text-lighter-invert};
 
     --border-color: #{$border-invert};
+
+    --navbar-shadow: #{$navbar-shadow-theme-dark};
+
 }
 
 * {
@@ -57,6 +73,8 @@ html {
 body {
     color: var(--body-color);
     background: var(--body-background-color);
+    font-size: 17px;
+    z-index: -30;
 }
 
 a {
@@ -127,24 +145,64 @@ h6, h6.title {
     flex-direction: column;
 }
 
-.main {
-    padding-top: 445px;
-}
-
 .site-header {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+}
+
+.site-header .hero {
+    height: var(--site-header-height);
+}
+
+.site-header.is-big .hero {
+    height: var(--site-header-big-height);
+}
+
+.site-header.is-small .hero {
+    height: var(--site-header-small-height);
+}
+
+.site-header + .main {
+    padding-top: var(--site-header-height);
+}
+
+.site-header.is-big + .main {
+    padding-top: var(--site-header-big-height);
+}
+
+.site-header.is-small + .main {
+    padding-top: var(--site-header-small-height);
+}
+
+.site-logo {
+    background-color: var(--theme-primary-color);
+    color: var(--body-background-color);
+    margin-left: -1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 2.25rem;
+    font-weight: 700;
+    font-size: 1.75rem;
 }
 
 .hero {
+    .hero-head {
+        height: var(--navbar-big-height);
+    }
 
-    .navbar {
-        background: var(--body-background-color-light);
+    .hero-foot {
+        .navbar {
+            z-index: 10;
+        }
     }
 }
+
+
+
+
 
 .main-menu {
     font-weight: 600;
@@ -158,6 +216,12 @@ h6, h6.title {
 .hero-foot-anchor-menu {
     pointer-events: none;
     transition: pointer-events 0.1s;
+
+    .navbar-item {
+        position: relative;
+        font-weight: 500;
+    }
+
 }
 
 .hero-head-anchor-menu:not([style*="opacity: 0"]), 
@@ -172,7 +236,7 @@ h6, h6.title {
     justify-content: center;
   }
 
-  .page-title {
+.page-title {
     font-size: 8rem;
     font-weight: 700;
     font-weight: 700;
@@ -180,7 +244,7 @@ h6, h6.title {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-52%, -56%);
+    transform: translate(-50%, -56%);
     color: var(--body-background-color);
     text-transform: lowercase;
     letter-spacing: -0.1em;
@@ -192,4 +256,15 @@ h6, h6.title {
     span {
         color: $primary;
     }
-  }
+}
+
+  
+.mysquares {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+    width: 100vw;
+
+}

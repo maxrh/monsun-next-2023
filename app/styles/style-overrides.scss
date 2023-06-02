@@ -7,6 +7,7 @@
 
 .subtitle {
     color: var(--text-light);
+    line-height: $subtitle-line-height;
 }
 
 .has-text-light {
@@ -74,11 +75,14 @@
 .section.is-large {
     padding-left: 0;
     padding-right: 0;
+
+    width: 100%;
 }
 
 .container {
     padding-left: 4rem;
     padding-right: 4rem;
+    width: 100%;
 }
 
 @media screen and (min-width: 1024px) {
@@ -119,4 +123,8 @@ a.navbar-item:not(.is-active):focus-within,
 .navbar-link:not(.is-active):focus, 
 .navbar-link:not(.is-active):focus-within {
     color: inherit;
+}
+
+.navbar-link:not(.is-arrowless)::after {
+    margin-top: -0.5em; 
 }

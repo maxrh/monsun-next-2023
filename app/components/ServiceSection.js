@@ -23,23 +23,22 @@ export default function ServiceSection( props ) {
     }, [isInView]);   
 
     return ( 
-        <section id={serviceName} ref={ref} className={`${styles.container} section is-medium`}>
-            <div className={`columns is-8 is-variable is-desktop is-flex-wrap-wrap ${reverse ? 'is-flex-direction-row-reverse' : ''}`}>
-                <div className={`column `}>
-                    <div className="p-6">
-                        <div className="block mb-6">   
-                            <span className="block is-list is-flex has-text-light has-text-weight-medium mb-3" >
-                                {service?.tags?.map((item, index) => (
-                                    <span className="mr-3 pr-3 border-r" key={index}>{item}</span>
-                                ))}
-                            </span>
+        <section id={serviceName} ref={ref} className={`${styles.container} section`}>
+            <div className={`columns is-gapless is-desktop is-flex-wrap-wrap is-vcentered ${reverse ? 'is-flex-direction-row-reverse' : ''}`}>
+                <div className={`column is-two-fifths`}>
+                    <div className={`${styles.text}`} >
+                        <div className="block is-list is-flex is-size-7" >
+                            {service?.tags?.map((item, index) => (
+                                <span className="mr-3 pr-3 border-r" key={index}>{item}</span>
+                            ))}
                         </div>
+                      
 
-                        <h1 className='title is-spaced is-3 has-text-primary'>{service?.title ? service.title : "Title"}</h1>
-                        <p className='block subtitle is-5'>{service?.subtitle ? service.subtitle : "Subtitle"}</p>
+                        <h1 className='title is-spaced is-4 has-text-primary'>{service?.title ? service.title : "Title"}</h1>
+                        <p className='block'>{service?.subtitle ? service.subtitle : "Subtitle"}</p>
 
-                            {service?.list?.length > 0 && (
-                                <ul className="block is-list p-4 pr-6 ">
+                            {/* {service?.list?.length > 0 && (
+                                <ul className="block is-list pl-4 pr-6 ">
                                     {service.list.map((item, index) => (
                                         <li className="is-flex pb-2 mb-2 border-b" key={index}><HiCheckCircle className="icon mr-2 has-text-light"/><span>{item}</span></li>
                                     ))}
@@ -52,20 +51,22 @@ export default function ServiceSection( props ) {
                                         <li key={index}>{item}</li>
                                     ))}
                                 </ul>
-                            )}  
-                        
+                            )}   */}
                     </div>
                 </div>
+
                 <div className={`column is-three-fifths`}>
-                    <ImageComponent 
-                        src={service?.imageUrl}
-                        alt="Picture of the author"
-                        width={1000}
-                        height={612}
-                        side={reverse ? 'left' : 'right'}
-                        color={service?.overlayColor}
-                        slides={service?.slides}
-                    />
+                    <div className={styles.image + (reverse ? ' ' + styles.reverse : '')}>
+                        <ImageComponent 
+                            src={service?.imageUrl}
+                            alt="Picture of the author"
+                            width={1000}
+                            height={612}
+                            side={reverse ? 'left' : 'right'}
+                            color={service?.overlayColor}
+                            slides={service?.slides}
+                        />
+                    </div>
                 </div>
             </div>
         </section>

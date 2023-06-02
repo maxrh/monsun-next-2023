@@ -1,4 +1,5 @@
 import ServiceSection from "./components/ServiceSection";
+import SquaresGrid from "./components/SquaresGrid";
 import styles from './page.module.scss'
 
 const getServices = async () => {
@@ -17,6 +18,7 @@ export default async function Home() {
             {services.grafik && <ServiceSection serviceName={"grafik"} service={services.grafik} />}
             {services.foto && <ServiceSection serviceName={"foto"} service={services.foto} reverse />}
             {services.ord && <ServiceSection serviceName={"ord"} service={services.ord} />}
+            <SquaresGrid className="mysquares" size={10} gap={50} />
 
         </main>
 

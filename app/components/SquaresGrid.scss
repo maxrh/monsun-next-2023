@@ -1,0 +1,19 @@
+@import "../styles/variable-overrides";
+@import "../styles/style-overrides";
+
+
+
+.square-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+
+    .square {
+        background-color: var(--body-background-color-light);
+        border-radius: 1px;
+    }
+
+}
+

@@ -36,19 +36,23 @@ export default function Header() {
 
     return (
         <header className='site-header'>
-            <section className='hero is-medium is-background-light'>
+            <section className='hero is-background-light'>
                 <div className="hero-head is-flex">
                     <motion.nav 
-                        className="navbar is-fixed-top" 
+                        className="navbar is-fixed-top pl-4 pr-4" 
                         role="navigation" 
                         aria-label="main navigation"
-                        animate={{ padding: isScrolled ? '0rem 1rem' : '1rem 1rem', backgroundColor: isScrolled ? 'var(--body-background-color-light)' : 'transparent' }}
-                        initial={{ padding: '1rem 1rem' }}
+                        animate={{ 
+                            height: isScrolled ? 'var(--navbar-height)' : 'var(--navbar-big-height)',
+                            backgroundColor: isScrolled ? 'var(--body-background-color)' : 'var(--body-background-color-transparent)', 
+                            boxShadow: isScrolled ? 'var(--navbar-shadow)' : '1px 1px 12px rgba(0, 0, 0, 0)' 
+                        }}
                         transition={{ duration: .25 }}
                     >
                         <div className="navbar-brand">
-                            <Link className="navbar-item" href="/">Logo</Link>
+                            <Link className="navbar-item site-logo" href="/">monsun</Link>
                             <Link href="/" role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+
                                 <span aria-hidden="true"></span>
                                 <span aria-hidden="true"></span>
                                 <span aria-hidden="true"></span>
@@ -103,14 +107,14 @@ export default function Header() {
                     
                     <h1 className='page-title'>
 
-                        Lorem ipsum is placeholder text commonly used in the graphic, print, and <span> Monsun</span> industries for previewing layouts and visual mockups
+                        Lorem ipsum is placeholder text commonly used in the graphic, print, and industries for previewing layouts and visual mockups
                     
                     
                     </h1>
                 </motion.div>
 
                 <div className="hero-foot">
-                        <nav className="container pb-4 pt-4">
+                        <nav className="navbar container">
                             <motion.div className="hero-foot-anchor-menu navbar-start"
                                 animate={{ 
                                     opacity: (!isScrolled && isHovering) ? 0 : isScrolled ? 0 : 1, 

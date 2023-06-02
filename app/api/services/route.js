@@ -38,7 +38,7 @@ export async function GET(request) {
         grafik: {
             id: '2',
             title: 'Godt design er enkelt, funktionelt og tidløst',
-            subtitle: 'Sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            subtitle: 'Nisi quis eleifend quam adipiscing vitae. Lectus magna fringilla urna porttitor rhoncus dolor purus. Egestas integer eget aliquet nibh praesent tristique.',
             imageUrl: 'https://picsum.photos/id/20/1000/1000',
             overlayColor: '#0000FF',
             tags: [
@@ -50,7 +50,7 @@ export async function GET(request) {
         foto: {
             id: '2',
             title: 'Cursus in hac habitasse platea dictumst',
-            subtitle: 'Duis aute irure dolor in reprehenderit.',
+            subtitle: 'Auctor eu augue ut lectus arcu bibendum at varius. Etiam tempor orci eu lobortis elementum nibh tellus. Vitae nunc sed velit dignissim sodales ut eu sem.',
             imageUrl: 'https://picsum.photos/id/36/1000/1000',
             overlayColor: '#00B6FF',
             tags: [
@@ -62,7 +62,7 @@ export async function GET(request) {
         ord: {
             id: '2',
             title: 'Aenean sed adipiscing diam donec',
-            subtitle: 'Duis aute irure dolor in reprehenderit.',
+            subtitle: 'Nisi quis eleifend quam adipiscing vitae proin. Lectus magna fringilla urna porttitor rhoncus dolor purus. Egestas integer eget aliquet nibh praesent tristique.',
             imageUrl: 'https://picsum.photos/id/486/1000/1000',
             overlayColor: 'SpringGreen',
             tags: [

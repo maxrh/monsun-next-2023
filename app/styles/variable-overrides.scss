@@ -1,20 +1,30 @@
-@import "bulma/sass/utilities/initial-variables";
-@import "bulma/sass/utilities/functions";
+@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/functions";
 
 // Override Bulma variables here
-$title-line-height: 1.25;
-$subtitle-line-height: 1.3;
 
+$block-spacing: 2rem;
+$column-gap: 3rem;
+
+// Breakpoints
+
+$desktop: 1024px;
+$widescreen: 1264px;
+$fullhd: 1264px;
 
 // Typography
 
 $size-1: 2.25rem;
-$size-2: 2rem;  // Modify these values to suit your design
+$size-2: 2rem;  
 $size-3: 1.75rem;
 $size-4: 1.5rem;
 $size-5: 1.25rem;
-$size-6: 1rem; // Keeps Bulma's original h6 size
+$size-6: 1rem; 
+$size-7: 14px;
 
+$body-line-height: 1.5;
+$title-line-height: 1.35;
+$subtitle-line-height: $body-line-height;
 
 // Bulma main Colors Override converted to rgb
 
@@ -55,8 +65,28 @@ $body-color-invert: $text-invert;
 $body-background-color: $scheme-main;
 $body-background-color-invert: $scheme-invert;
 
+$body-background-color-transparent: rgba($scheme-main, 0);
+$body-background-color-transparent-invert: rgba($scheme-invert, 0);
+
+
 $body-background-color-light:  $white-ter;
 $body-background-color-light-invert: $theme-darker;
 
 $body-background-color-lighter:  $grey-lighter;
 $body-background-color-lighter-invert:  $theme-darkest;
+
+
+
+// Custom Variables
+
+
+
+$navbar-height: 3.75rem;
+$navbar-big-height: 5rem;
+
+$site-header-height: 31.25rem;
+$site-header-big-height: 50rem;
+$site-header-small-height: 18.75rem;
+
+$navbar-shadow: 1px 1px 12px rgba(0,0,0,.1);
+$navbar-shadow-theme-dark: 1px 1px 12px rgba(0,0,0,.35);

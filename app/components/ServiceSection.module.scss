@@ -3,6 +3,27 @@
 
 
 .container {
-    min-height: 80vh;
-    width: 100%;
+    padding: 5rem 0rem;
+    position: relative;
+    z-index: 1;
+}
+
+.text {
+    padding: 200px 45px;
+}
+
+.image {
+    padding: 0 45px;
+
+    > div {
+        float: left;
+    }
+}
+
+.reverse {
+
+    > div {
+        float: right;
+    }
+    
 }

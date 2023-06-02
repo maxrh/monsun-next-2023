@@ -8,11 +8,19 @@ import Footer from './components/Footer'
 import './styles/globals.scss'
 
 import { IBM_Plex_Sans } from 'next/font/google'
+import { Poppins } from 'next/font/google'
+
 
 const ibmPlexSans = IBM_Plex_Sans({ 
     weight: ['300', '400', '500', '600', '700'],
     styles: ['normal', 'italic'],
     subsets: ['latin'] 
+})
+
+const poppins = Poppins({
+    weight: ['300', '400', '500', '600', '700'],
+    styles: ['normal', 'italic'],
+    subsets: ['latin']
 })
 
 
@@ -27,7 +35,7 @@ export default function Layout({ children }) {
 
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={ibmPlexSans.className}>
+            <body className={poppins.className}>
                 <ThemeProviders>
                     <ScrollContext.Provider value={{ sectionInView, setSectionInView }}>
                         <div className='page-container'>
