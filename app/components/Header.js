@@ -106,12 +106,7 @@ export default function Header() {
                     transition={{ duration: .15 }} 
                 >
                     
-                    <h1 className='page-title'>
-
-                        Lorem ipsum is placeholder text commonly used in the graphic, print, and industries for previewing layouts and visual mockups
-                    
-                    
-                    </h1>
+                    <h1 className='page-title'>What we do</h1>
 
                 </motion.div>
 
@@ -131,7 +126,7 @@ export default function Header() {
                         </nav>
                     
                 </div>
-                <SquaresGrid className="hero-squares" size={10} gap={45} />
+                <SquaresGrid className="hero-squares" size={5} gap={20} />
 
             </section>
         </header>

@@ -198,7 +198,9 @@ h6, h6.title {
     .hero-head {
         height: var(--navbar-big-height);
     }
-
+    .hero-body {
+        z-index: 10;
+    }
     .hero-foot {
         .navbar {
             z-index: 30;
@@ -243,21 +245,21 @@ h6, h6.title {
   }
 
 .page-title {
-    font-size: 8rem;
+    font-size: 4rem;
     font-weight: 700;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     position: absolute;
-    top: 50%;
+    bottom: 46%;
     left: 50%;
-    transform: translate(-50%, -56%);
-    color: var(--body-background-color);
-    text-transform: lowercase;
-    letter-spacing: -0.1em;
-    line-height: .6;
-    width: 100%;
-    
+    color: var(--body-background-color-lighter);
+    letter-spacing: -0.05em;
+    line-height: .65;
+    width: auto !important;
     word-wrap: break-word;
+    background-color: var(--body-background-color-light);
+    display: inline;
+    padding: 2.25rem 3rem 2rem;
+    transform: translate(-50%, 50%);
 
     span {
         color: $primary;
@@ -281,12 +283,18 @@ h6, h6.title {
 
 .hero-squares {
     position: absolute;
-    top:  0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    
+    top:  120px;
+    left: 50px;
+    bottom: 80px;
+    right: 50px;
+    min-width: auto !important;
+
     .square {
         background-color: var(--body-background-color);
+        border-radius: 1px;
+
+        &:nth-child(odd) {
+            background-color: var(--theme-primary-color);
+        }
     }
 }

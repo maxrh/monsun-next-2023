@@ -6,16 +6,16 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 
 import styles from './SquaresGrid.scss';
 
-function Square({ size, gap, i }) {
-    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
-    console.log(`Square ${i} is in view: ${inView}`);
+function Square({ size, i }) {
 
     return (
-        <div
-            ref={ref}
+        <motion.div
             key={i}
             className="square"
-            style={{ width: `${size}px`, height: `${size}px`, margin: `${gap}px` }}
+            style={{ 
+                width: `${size}px`, 
+                height: `${size}px`, 
+            }}
         />
     );
 }
@@ -24,23 +24,40 @@ export default function SquaresGrid({ size, gap, className }) {
 
     const { width, height, ref } = useResizeDetector();
     const [numberOfSquares, setNumberOfSquares] = useState(0);
-    const squareSize = size || 8; // Use prop or default to 8
-    const squareGap = gap || 6; // Use prop or default to 6
-    
+
+    const squareSize = size || 5; // Use prop or default
+    const gridGap = gap || 20; // Use prop or default
+
+    const isBrowser = () => typeof window !== 'undefined';
+
     useEffect(() => {
+        if (!isBrowser()) return;
+    
         if (width && height) {
-            const squaresPerRow = Math.floor(width / (squareSize + squareGap * 2));
-            const squaresPerColumn = Math.floor(height / (squareSize + squareGap * 2));
-            const totalSquares = squaresPerRow * squaresPerColumn;
+            let numCols = Math.floor((width + gridGap) / (squareSize + gridGap));
+            const numRows = Math.floor((height + gridGap) / (squareSize + gridGap));
+    
+            const totalSquares = numCols * numRows;
             setNumberOfSquares(totalSquares);
             console.log(totalSquares + " squares")     
         }
-    }, [width, height]);
+    }, [width, height, squareSize, gridGap]);
 
     return (
-        <div ref={ref} className={`square-grid ${className}`} style={{ minWidth: '100%' }}>
+        <div 
+            ref={ref} 
+            className={`square-grid ${className}`} 
+            style={{
+                display: 'grid',
+                gridTemplateColumns: `repeat(auto-fill, ${squareSize}px)`,
+                justifyContent: 'center',
+                gridColumnGap: `${gridGap}px`,
+                gridRowGap: `${gridGap}px`,
+                minWidth: '100%',
+            }}
+        >
             {Array.from({ length: numberOfSquares }, (_, i) => (
-                <Square size={squareSize} gap={squareGap} key={i} i={i} />
+                <Square size={squareSize} key={i} i={i} />
             ))}
         </div>
     );
