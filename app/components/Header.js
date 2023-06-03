@@ -106,7 +106,7 @@ export default function Header() {
                     transition={{ duration: .15 }} 
                 >
                     
-                    <h1 className='page-title'>What we do</h1>
+                    <h1 className='page-title'>What we do<br/>culpa qui officia<br/> + why we do it </h1>
 
                 </motion.div>
 

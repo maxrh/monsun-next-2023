@@ -2,7 +2,7 @@
 
 import { useResizeDetector } from 'react-resize-detector';
 import { useEffect, useState, useMemo } from 'react';
-import { motion, useInView, useAnimation, useSpring, easeIn } from 'framer-motion';
+import { motion, useInView, useAnimation} from 'framer-motion';
 import styles from './SquaresGrid.scss';
 
 function Square({ num, size, i }) {
@@ -12,13 +12,15 @@ function Square({ num, size, i }) {
     const handleMouseEnter = async () => {
         // Scale up quickly
         await controls.start({
-            backgroundColor: i % 2 !== 0 ? 'rgba(8, 8, 8, .5)' : 'rgba(255, 79, 94, 1)',
+            opacity: 0,
+            backgroundColor: i % 2 !== 0 ? 'var(--body-background-color' : 'var(--theme-primary-color)',
             transition: { duration: 0.25, ease: "easeIn"  },
         });
 
         // Then scale down slowly
         controls.start({
-            backgroundColor: i % 2 !== 0 ? 'rgba(8, 8, 8, .5)' : 'rgba(255, 79, 94, 1)',
+            opacity: 1,
+            backgroundColor: i % 2 !== 0 ? 'var(--body-background-color' : 'var(--theme-primary-color)',
             transition: { duration: .75, ease: "easeOut" },
         });
     };
@@ -26,14 +28,14 @@ function Square({ num, size, i }) {
     useEffect(() => {
         // Run initial animation
         controls.start({
-            backgroundColor: i % 3 !== 0 ? 'rgba(8, 8, 8, .25)' : 'rgba(255, 79, 94, 1)',
+            backgroundColor: i % 2 !== 0 ? 'var(--body-background-color-light)' : 'var(--theme-primary-color)',
 
-
+            opacity: (Math.random() * 1 + 0.1) - 0.1,
             transition: { 
                 type: "spring",
-                damping: 30,
-                stiffness: 500,
-                delay: 3 + (Math.random() * num + 0.1) / 100,
+                damping: 10,
+                stiffness: 1000,
+                delay: 3 + (Math.random() * num + 0.1) / 50,
                 restDelta: 0.001
             },
         });
@@ -43,7 +45,7 @@ function Square({ num, size, i }) {
     let squareStyle = {
         width: `${size}px`, 
         height: `${size}px`, 
-        backgroundColor: 'rgba(8, 8, 8, 1)',
+        backgroundColor: i % 2 !== 0 ? 'var(--body-background-color-light)' : 'var(--body-background-color)',
     }
 
     return (
@@ -77,6 +79,8 @@ export default function SquaresGrid({ size, gap, className }) {
             let numRows = Math.floor((height + gridGap) / (squareSize + gridGap));
 
             if (numCols % 2 === 0) { numCols--; }
+
+            console.log(`numCols: ${numCols}, numRows: ${numRows}`);
 
             setNumColumns(numCols);
             setNumberOfSquares(numCols * numRows);

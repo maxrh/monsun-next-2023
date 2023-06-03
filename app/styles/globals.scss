@@ -201,6 +201,7 @@ h6, h6.title {
     .hero-body {
         z-index: 10;
         pointer-events: none;
+        
     }
     .hero-foot {
         .navbar {
@@ -246,19 +247,20 @@ h6, h6.title {
   }
 
 .page-title {
-    font-size: 2rem;
-    font-weight: 500;
+    font-size: 4rem;
+    font-weight: 700;
     margin-bottom: 0;
     position: absolute;
-    bottom: 80px;
-    left: 3%;
+    top: 90px;
+    right: 3%;
     color: var(--body-background-color-lighter);
     letter-spacing: -0.05em;
     line-height: .65;
     width: auto !important;
     word-wrap: break-word;
-    background-color: var(--body-background-color);
+    background-color: var(--body-background-color-light);
     display: inline;
+    text-align: right;
     padding: 2.25rem 2.5rem 2rem;
 
     span {
