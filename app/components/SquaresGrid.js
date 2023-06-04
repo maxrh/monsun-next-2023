@@ -32,7 +32,7 @@ export default function SquaresGrid({ size, gap, className }) {
                 setNumberOfSquares(totalSquares)
             }
 
-            setTimeout(() => setIsLoading(false), 1000) // Set loading state to false
+            setTimeout(() => setIsLoading(false), 500) // Set loading state to false
         }
 
         handleResize()
@@ -42,6 +42,10 @@ export default function SquaresGrid({ size, gap, className }) {
             window.removeEventListener('resize', handleResize)
         }
     }, [])
+
+    // set animation on mouse enter
+
+
 
     const squares = useMemo(() => {
         return Array.from({ length: numberOfSquares }, (_, i) => {
@@ -58,13 +62,24 @@ export default function SquaresGrid({ size, gap, className }) {
                         gridColumn: (row % 2 ? column * 2 : column * 2 + 1) + 1,
                     }}
                     initial={{ backgroundColor: 'rgba(10, 13, 18, 1)'}}
-                    animate={{ backgroundColor: useRandomHslColor()}}
-                    exit={{ opacity: 1, scale: 1 }}
+                    animate={{ opacity: 1, backgroundColor: useRandomHslColor()}}
+                    exit={{ opacity: 0 }}
                     transition={{ 
                         ease: "linear",
                         duration: 2,
-                        delay:  (Math.random() * 2 + 0.1),
+                        delay:  (Math.random() * 2 + 0.1) - 0.1,
                         restDelta: 0.001
+                    }}
+                    onMouseEnter={() => {
+                        console.log(i, 'mouse enter')
+
+                        // ad opacity to hovered square
+
+                        const square = document.querySelector(`.square-grid .square:nth-child(${i + 1})`)
+                        square.style.opacity = .1
+                        square.style.transition = 'opacity .5s ease-in-out'
+                        
+
                     }}
                 />
             );
@@ -72,12 +87,27 @@ export default function SquaresGrid({ size, gap, className }) {
     }, [numberOfSquares, squareSize]);
 
     return (
-        <AnimatePresence>
+        <>
 
             { isLoading ? (
-                <div className='is-flex is-justify-content-center is-align-items-center is-size-1' style={{ height: '100%' }}>
-                    <span class="bulma-loader-mixin"></span>
-                </div>
+                
+                <motion.div 
+                    ref={ref} 
+                    className={`square-grid ${className}`} 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: .25 }}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        fontSize: '3rem',
+                    }}
+                >
+                    <span className="bulma-loader-mixin"></span>
+                </motion.div>
+
             ) : (
                 <motion.div 
                     ref={ref} 
@@ -95,11 +125,12 @@ export default function SquaresGrid({ size, gap, className }) {
                         perspective: '1000px',
                     }}
                 >
+
                     {squares}
+
                 </motion.div>
             )}
 
-
-        </AnimatePresence>
+       </>
     );
 }

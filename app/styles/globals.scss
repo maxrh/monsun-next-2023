@@ -304,7 +304,7 @@ h6, h6.title {
 
 .bulma-loader-mixin {
     @include loader;
-    border-left-color: var(--theme-primary-color);
-    border-bottom-color: var(--theme-primary-color);
+    border-left-color: var(--body-background-color);
+    border-bottom-color: var(--body-background-color);
 }
 

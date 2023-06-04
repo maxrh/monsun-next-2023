@@ -100,11 +100,11 @@ export default function Header() {
                 </div>
                     <motion.div 
                         className="hero-body"
-                        initial={{ opacity: 1 }}
+                        initial={{ opacity: 0 }}
                         animate={{ 
                             opacity: isScrolled ? 0 : 1 
                         }}
-                        transition={{ duration: .15 }} 
+                        transition={{ duration: .5 }} 
                     >
                         <div className="hero-body-box">
                             <h1 className='hero-title'>Colors</h1>
