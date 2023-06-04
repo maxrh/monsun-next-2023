@@ -106,7 +106,7 @@ function ImageComponent({ side, ...props }) {
                         >
                             
                             <div className={styles.ratio}>
-                                <Image {...props} className={`${styles.image} ${styles.ratioInner}`} />
+                                <Image {...props} className={`${styles.image} ${styles.ratioInner}`} priority={true} placeholder />
                             </div>
                         </motion.div>
                    

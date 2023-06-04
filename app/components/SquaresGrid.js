@@ -1,98 +1,59 @@
 "use client"
 
-import { useResizeDetector } from 'react-resize-detector';
-import { useEffect, useState, useMemo } from 'react';
-import { motion, useInView, useAnimation} from 'framer-motion';
+import { useEffect, useState, useMemo, useRef } from 'react';
+import { motion } from 'framer-motion';
+import useRandomHslColor from '../hooks/useRandomHslColor';
 import styles from './SquaresGrid.scss';
-
-function Square({ num, size, i }) {
-
-    const controls = useAnimation();
-
-    const handleMouseEnter = async () => {
-        // Scale up quickly
-        await controls.start({
-            opacity: 0,
-            backgroundColor: i % 2 !== 0 ? 'var(--body-background-color' : 'var(--theme-primary-color)',
-            transition: { duration: 0.25, ease: "easeIn"  },
-        });
-
-        // Then scale down slowly
-        controls.start({
-            opacity: 1,
-            backgroundColor: i % 2 !== 0 ? 'var(--body-background-color' : 'var(--theme-primary-color)',
-            transition: { duration: .75, ease: "easeOut" },
-        });
-    };
-
-    useEffect(() => {
-        // Run initial animation
-        controls.start({
-            backgroundColor: i % 2 !== 0 ? 'var(--body-background-color-light)' : 'var(--theme-primary-color)',
-
-            opacity: (Math.random() * 1 + 0.1) - 0.1,
-            transition: { 
-                type: "spring",
-                damping: 10,
-                stiffness: 1000,
-                delay: 3 + (Math.random() * num + 0.1) / 50,
-                restDelta: 0.001
-            },
-        });
-    }, [controls, i]);
-
-
-    let squareStyle = {
-        width: `${size}px`, 
-        height: `${size}px`, 
-        backgroundColor: i % 2 !== 0 ? 'var(--body-background-color-light)' : 'var(--body-background-color)',
-    }
-
-    return (
-        <motion.div
-            key={i}
-            className="square"
-            style={squareStyle}
-            animate={controls}
-            onMouseEnter={handleMouseEnter}
-            
-        />
-    );
-}
 
 export default function SquaresGrid({ size, gap, className }) {
 
-    const { width, height, ref } = useResizeDetector();
     const [numberOfSquares, setNumberOfSquares] = useState(0);
     const [numColumns, setNumColumns] = useState(0);
+    const ref = useRef(null); 
 
     const squareSize = size || 5; // Use prop or default
     const gridGap = gap || 20; // Use prop or default
 
-    const isBrowser = () => typeof window !== 'undefined';
-
     useEffect(() => {
-        if (!isBrowser()) return;
-        if (width && height) {
+        const handleResize = () => {
+            if (ref.current) {
+                const { width, height } = ref.current.getBoundingClientRect();
 
-            let numCols = Math.floor((width + gridGap) / (squareSize + gridGap));
-            let numRows = Math.floor((height + gridGap) / (squareSize + gridGap));
+                let numCols = Math.floor(width / (squareSize + gridGap));
+                let numRows = Math.floor(height / (squareSize + gridGap));
+        
+                if (numCols % 2 === 0) { numCols--; }
+        
+                setNumColumns(numCols);
+                const totalSquares = numCols * numRows;
+                setNumberOfSquares(totalSquares);
+            }
+        };
 
-            if (numCols % 2 === 0) { numCols--; }
-
-            console.log(`numCols: ${numCols}, numRows: ${numRows}`);
-
-            setNumColumns(numCols);
-            setNumberOfSquares(numCols * numRows);
-        }
-    }, [width, height, squareSize, gridGap]);
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const squares = useMemo(() => {
         return Array.from({ length: numberOfSquares }, (_, i) => (
-            <Square size={squareSize} num={numberOfSquares} key={i} i={i} />
+            <motion.div key={i} i={i}
+                className="square"
+                style={{ width: `${squareSize}px`, height: `${squareSize}px`}}
+                initial={{ backgroundColor: i % 2 !== 0 ? 'rgba(10, 13, 18, 0)' : 'rgba(10, 13, 18, 1)'}}
+                animate={{ backgroundColor: i % 2 !== 0 ? 'rgba(10, 13, 18, 0)' : useRandomHslColor()}}
+                exit={{ opacity: 1, scale: 1 }}
+                transition={{ 
+                    ease: "linear",
+                    duration: 2,
+                    delay: 2 + (Math.random() * 2 + 0.1),
+                    restDelta: 0.001
+                }}
+            />
         ));
     }, [numberOfSquares, squareSize]);
-
 
     return (
         <div 
