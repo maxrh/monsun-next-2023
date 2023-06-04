@@ -107,7 +107,7 @@ export default function Header() {
                         transition={{ duration: .15 }} 
                     >
                         <div className="hero-body-box">
-                            <h1 className='page-title'>Colors</h1>
+                            <h1 className='hero-title'>Colors</h1>
                         </div>
 
                     </motion.div>
@@ -123,8 +123,8 @@ export default function Header() {
                                     x: (!isScrolled && isHovering) ? -30 : isScrolled ? -30 : 0 
                                 }}
                             
-                                initial={{ opacity: 0, x: -30 }}
-                                transition={{ duration: .5, delay: 1 }} 
+                                initial={{ opacity: 0, x: 0 }}
+                                transition={{ duration: .5, delay: .5 }} 
                             >
                                 <NavAnchorMenu isScrolled={isScrolled} />
                             </motion.div>
@@ -132,14 +132,12 @@ export default function Header() {
                     </div>
                     
 
-                    <motion.div  
+                    <div  
                         className="hero-grid"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1 }}
+                   
                     >
                         <SquaresGrid className="hero-squares hero-grid-item-1" size={10} gap={15} />
-                    </motion.div>
+                    </div>
             </section>
         </header>
     )
