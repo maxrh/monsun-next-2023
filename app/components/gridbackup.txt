@@ -1,0 +1,259 @@
+
+// useEffect(() => {
+    //     const newColorSets = hueRanges.map(hueRange =>
+    //         Array(numberOfSquares).fill(0).map(_ => useRandomHslColor(hueRange))
+    //     );
+
+    //     const randomColorSetIndex = Math.floor(Math.random() * newColorSets.length);
+    //     setSelectedColorSet(newColorSets[randomColorSetIndex]);
+    // }, [numberOfSquares]);
+
+
+
+// const colors = colorSets.map(colorSet => colorSet[i % colorSet.length]);
+// const randomDelay = (Math.random() * 2 + 0.1) - 0.1
+
+
+
+
+// <motion.div
+//             key={i}
+//             className="square"
+//             style={{ 
+//                 width: `${size}px`, 
+//                 height: `${size}px`, 
+//             }}
+//             animate={{
+                
+//                 scale: [0, 1.2, 1, 0, 0],
+//                 transition: {
+//                     delay: i * 0.01,
+//                     duration: 0.5,
+//                     ease: 'easeInOut',
+//                 }
+//             }}
+//         />
+
+
+
+
+   // const color = useMemo(getRandomHslColor, []);
+
+    // const controls = useAnimation();
+
+    // const handleMouseEnter = () => {
+    //     controls.start({
+    //         backgroundColor: i % 2 !== 0 ? 'rgb(25, 33, 44)' : 'rgb(255, 79, 94)',
+    //         transition: { duration: 0.25, ease: "easeIn"  },
+    //     });
+
+    //     controls.start({
+    //         backgroundColor: i % 2 !== 0 ? 'rgb(25, 33, 44)' : 'rgb(255, 79, 94)',
+    //         transition: { duration: .75, ease: "easeOut" },
+    //     });
+    // };
+
+    // useEffect(() => {
+    //     controls.start({
+    //         backgroundColor: i % 2 !== 0 ? 'rgba(25, 33, 44, 1)' : color,
+    //     });
+        
+    // }, [controls, i, num]);
+
+
+//     delay:  (Math.random() * 2 + 0.1) - 0.1,
+
+
+
+//         useEffect(() => {
+//             // Run initial animation
+//             controls.start({
+//                 backgroundColor: i % 2 !== 0 ? 'var(--body-background-color)' : 'var(--theme-primary-color)',
+//                 opacity: (Math.random() * 1 + 0.1),
+//                 y: 0,
+//                 transition: { 
+//                     type: "spring",
+//                     damping: 10,
+//                     stiffness: 1000,
+//                     delay: 3 + (Math.random() * num + 0.1) / 50,
+//                     restDelta: 0.001
+//                 },
+//             });
+//         }, [controls, i]);
+
+
+//         useEffect(() => {
+//             if (width && height) {
+//                 let numCols = Math.floor(width / (squareSize + gridGap));
+//                 let numRows = Math.floor(height / (squareSize + gridGap));
+                
+//                 console.log('numCols', numCols);
+//                 console.log('numRows', numRows);
+//                 console.log('height', height);
+//                 if (numCols % 2 === 0) { numCols--; }
+        
+//                 setNumColumns(numCols);
+//                 const totalSquares = numCols * numRows;
+//                 setNumberOfSquares(totalSquares);
+//             }
+//         }, [width, height, squareSize, gridGap]);
+
+
+
+
+//         "use client"
+
+// import { useEffect, useState, useMemo, useRef } from 'react'
+// import { motion, useAnimation } from 'framer-motion'
+// import useRandomHslColor from '../hooks/useRandomHslColor'
+// import styles from './SquaresGrid.scss'
+
+// const Square = ({ i, row, column, squareSize, randomColorsInHueRange }) => {
+    
+
+//     const variants = {
+//         animate: {
+//             backgroundColor: randomColorsInHueRange,
+//             transition: {
+//                 duration: 30,
+//                 ease: "linear",
+//                 repeat: Infinity,
+//                 repeatDelay: 2,
+//             }
+//         }
+//     };
+
+//     return (
+//         <motion.div
+             
+//             i={i}
+//             initial={{ backgroundColor: 'rgba(10, 13, 18, 1)' }}
+//             animate="animate"
+//             variants={variants}
+//             className="square"
+//             style={{ 
+//                 width: `${squareSize}px`, 
+//                 height: `${squareSize}px`,
+//                 gridRow: row + 1,
+//                 gridColumn: (row % 2 ? column * 2 : column * 2 + 1) + 1,
+//             }}                    
+//         />
+//     );
+// }
+
+// export default function SquaresGrid({ size, gap, className }) {
+
+//     const hueRanges = [
+//         [0, 30],    [30, 60],   [60, 90],   [90, 120], 
+//         [120, 150], [150, 180], [180, 210], [210, 240], 
+//         [240, 270], [270, 300], [300, 330], [330, 360]
+//     ];
+
+//     const [numberOfSquares, setNumberOfSquares] = useState(0)
+//     const [numColumns, setNumColumns] = useState(0)
+//     const [isLoading, setIsLoading] = useState(false)  
+
+//     const ref = useRef(null);
+//     const squareSize = size || 5 
+//     const gridGap = gap || 20 
+
+    
+//     useEffect(() => {
+//         const handleResize = () => {
+//             setIsLoading(true) // Set loading state to true
+
+//             if (ref.current) {
+//                 const { width, height } = ref.current.getBoundingClientRect()
+
+//                 let numCols = Math.floor(width / (squareSize + gridGap))
+//                 let numRows = Math.floor(height / (squareSize + gridGap))
+        
+//                 if (numCols % 2 === 0) { numCols-- }
+        
+//                 setNumColumns(numCols)
+//                 const totalSquares = numCols * numRows
+//                 setNumberOfSquares(totalSquares)
+//             }
+
+//             setTimeout(() => setIsLoading(false), 500) // Set loading state to false
+//         }
+
+//         handleResize()
+
+//         window.addEventListener('resize', handleResize)
+//         return () => {
+//             window.removeEventListener('resize', handleResize)
+//         }
+//     }, [])
+
+ 
+
+//     const container = {
+//         hidden: { opacity: 0 },
+//         show: { opacity: 1   },
+//     };
+    
+
+//     const squares = useMemo(() => {
+
+//         return Array.from({ length: numberOfSquares }, (_, i) => {
+//             const row = Math.floor(i / numColumns);
+//             const column = i % numColumns;
+//             const randomColorsInHueRange = hueRanges.map(hueRange => useRandomHslColor(hueRange));
+
+//             return (
+//                 <Square 
+//                     key={i}
+//                     row={row} 
+//                     column={column} 
+//                     squareSize={squareSize}
+//                     randomColorsInHueRange={randomColorsInHueRange}
+//                 />
+//             );
+            
+//         });
+        
+//     }, [numberOfSquares, squareSize]);
+
+    
+//     return (
+//         <>
+
+//             { isLoading ? (
+//                 <div 
+//                     ref={ref} 
+//                     className={`square-grid ${className}`} 
+//                     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3rem' }}
+//                 >
+//                     <span className="bulma-loader-mixin"></span>
+//                 </div>
+
+//             ) : (
+//                 <motion.div 
+//                     ref={ref} 
+//                     className={`square-grid ${className}`} 
+//                     initial="hidden"
+//                     animate="show"
+//                     variants={container}
+//                     style={{
+//                         display: 'grid',
+//                         gridTemplateColumns: `repeat(${numColumns * 2}, ${squareSize}px)`,
+//                         justifyContent: 'center',
+//                         gridColumnGap: `${gridGap}px`,
+//                         gridRowGap: `${gridGap}px`,
+//                         perspective: '1000px',
+//                     }}
+                    
+//                 >
+
+//                     {squares}
+
+//                 </motion.div>
+//             )}
+
+//        </>
+//     );
+// }
+
+
+
