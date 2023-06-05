@@ -1,23 +1,31 @@
 "use client"
 
 import { useEffect, useState, useMemo, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import useRandomHslColor from '../hooks/useRandomHslColor'
 import styles from './SquaresGrid.scss'
 
+const hueRanges = [
+    [0, 30],    [30, 60],   [60, 90],   [90, 120], 
+    [120, 150], [150, 180], [180, 210], [210, 240], 
+    [240, 270], [270, 300], [300, 330], [330, 360]
+];
+
 export default function SquaresGrid({ size, gap, className }) {
 
+    const [randomHueRange, setRandomHueRange] = useState(hueRanges[Math.floor(Math.random() * hueRanges.length)])
     const [numberOfSquares, setNumberOfSquares] = useState(0)
     const [numColumns, setNumColumns] = useState(0)
-    const [isLoading, setIsLoading] = useState() // New state
+    const [isLoading, setIsLoading] = useState(false)  
+
     const ref = useRef(null);
-
-    const squareSize = size || 5 // Use prop or default
-    const gridGap = gap || 20 // Use prop or default
-
+    const squareSize = size || 5 
+    const gridGap = gap || 20 
+    
     useEffect(() => {
         const handleResize = () => {
             setIsLoading(true) // Set loading state to true
+            setRandomHueRange(hueRanges[Math.floor(Math.random() * hueRanges.length)])
 
             if (ref.current) {
                 const { width, height } = ref.current.getBoundingClientRect()
@@ -42,80 +50,73 @@ export default function SquaresGrid({ size, gap, className }) {
             window.removeEventListener('resize', handleResize)
         }
     }, [])
-
-    // set animation on mouse enter
-
-
-
+    
+    const container = {
+        hidden: { opacity: 0 },
+        show: { opacity: 1,
+            transition: {
+                duration: 0.25,                 
+            },
+        },
+    };
+    
     const squares = useMemo(() => {
+
         return Array.from({ length: numberOfSquares }, (_, i) => {
             const row = Math.floor(i / numColumns);
             const column = i % numColumns;
-
+     
             return (
-                <motion.div key={i} i={i}
+                <motion.div
+                    key={i} 
+                    variants={{
+                        hidden: { opacity: 1, backgroundColor: 'hsla(0, 0%, 0%, 0.5)' },
+                        show: { 
+                            opacity: 1,
+                            backgroundColor: useRandomHslColor(randomHueRange),
+                        }
+                    }}
                     className="square"
+                    transition={{ 
+                        delay: 2 + i * -0.0015 + (Math.random() * 1 + 0.1) ,  
+                        duration: 2,
+                        ease: "linear",
+                    }}
                     style={{ 
                         width: `${squareSize}px`, 
                         height: `${squareSize}px`,
                         gridRow: row + 1,
                         gridColumn: (row % 2 ? column * 2 : column * 2 + 1) + 1,
                     }}
-                    initial={{ backgroundColor: 'rgba(10, 13, 18, 1)'}}
-                    animate={{ opacity: 1, backgroundColor: useRandomHslColor()}}
-                    exit={{ opacity: 0 }}
-                    transition={{ 
-                        ease: "linear",
-                        duration: 2,
-                        delay:  (Math.random() * 2 + 0.1) - 0.1,
-                        restDelta: 0.001
-                    }}
-                    onMouseEnter={() => {
-                        console.log(i, 'mouse enter')
-
-                        // ad opacity to hovered square
-
-                        const square = document.querySelector(`.square-grid .square:nth-child(${i + 1})`)
-                        square.style.opacity = .1
-                        square.style.transition = 'opacity .5s ease-in-out'
-                        
-
-                    }}
+                    
                 />
+                
             );
+            
         });
+        
     }, [numberOfSquares, squareSize]);
 
+    
     return (
         <>
 
             { isLoading ? (
-                
-                <motion.div 
+                <div 
                     ref={ref} 
                     className={`square-grid ${className}`} 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: .25 }}
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        fontSize: '3rem',
-                    }}
+                    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3rem' }}
                 >
                     <span className="bulma-loader-mixin"></span>
-                </motion.div>
+                </div>
 
             ) : (
                 <motion.div 
                     ref={ref} 
                     className={`square-grid ${className}`} 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: .25 }}
+                    initial="hidden"
+                    animate="show"
+                    variants={container}
                     style={{
                         display: 'grid',
                         gridTemplateColumns: `repeat(${numColumns * 2}, ${squareSize}px)`,
@@ -124,6 +125,7 @@ export default function SquaresGrid({ size, gap, className }) {
                         gridRowGap: `${gridGap}px`,
                         perspective: '1000px',
                     }}
+                    
                 >
 
                     {squares}
