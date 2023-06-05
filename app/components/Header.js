@@ -136,7 +136,7 @@ export default function Header() {
                         className="hero-grid"
                    
                     >
-                        <SquaresGrid className="hero-squares hero-grid-item-1" size={10} gap={15} />
+                        <SquaresGrid className="hero-squares hero-grid-item-1" size={10} gap={15} hueRange={NaN} />
                     </div>
             </section>
         </header>

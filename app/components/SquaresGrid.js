@@ -11,12 +11,17 @@ const hueRanges = [
     [240, 270], [270, 300], [300, 330], [330, 360]
 ];
 
-export default function SquaresGrid({ size, gap, className }) {
+export default function SquaresGrid({ size, gap, className, hueRange }) {
 
+
+    const [selectedHueRange, setSelectedHueRange] = useState(hueRanges[hueRange])
     const [randomHueRange, setRandomHueRange] = useState(hueRanges[Math.floor(Math.random() * hueRanges.length)])
     const [numberOfSquares, setNumberOfSquares] = useState(0)
     const [numColumns, setNumColumns] = useState(0)
     const [isLoading, setIsLoading] = useState(false)  
+
+console.log('randomHueRange', randomHueRange)
+console.log('hueRange', hueRanges[hueRange])
 
     const ref = useRef(null);
     const squareSize = size || 5 
@@ -25,24 +30,25 @@ export default function SquaresGrid({ size, gap, className }) {
     useEffect(() => {
         const handleResize = () => {
             setIsLoading(true) // Set loading state to true
-            setRandomHueRange(hueRanges[Math.floor(Math.random() * hueRanges.length)])
+            if (hueRange) { 
+                setSelectedHueRange(hueRanges[hueRange]) 
+            } else {
+                setRandomHueRange(hueRanges[Math.floor(Math.random() * hueRanges.length)])
+            }
 
             if (ref.current) {
                 const { width, height } = ref.current.getBoundingClientRect()
-
                 let numCols = Math.floor(width / (squareSize + gridGap))
                 let numRows = Math.floor(height / (squareSize + gridGap))
-        
                 if (numCols % 2 === 0) { numCols-- }
         
                 setNumColumns(numCols)
                 const totalSquares = numCols * numRows
                 setNumberOfSquares(totalSquares)
             }
-
             setTimeout(() => setIsLoading(false), 500) // Set loading state to false
-        }
-
+        } 
+        
         handleResize()
 
         window.addEventListener('resize', handleResize)
@@ -73,7 +79,7 @@ export default function SquaresGrid({ size, gap, className }) {
                         hidden: { opacity: 1, backgroundColor: 'hsla(0, 0%, 0%, 0.5)' },
                         show: { 
                             opacity: 1,
-                            backgroundColor: useRandomHslColor(randomHueRange),
+                            backgroundColor: useRandomHslColor(hueRange ? selectedHueRange : randomHueRange),
                         }
                     }}
                     className="square"

@@ -1,7 +1,7 @@
-const useRandomHslColor = (randomHueRange) => {
+const useRandomHslColor = (selectedHueRange) => {
     const getRandomNumber = (min, max) => Math.round(Math.random() * (max - min) + min);
     const { hue, saturation, lightness } = {
-        hue: getRandomNumber(...randomHueRange),
+        hue: getRandomNumber(...selectedHueRange),
         saturation: getRandomNumber(0, 100),
         lightness: getRandomNumber(0, 100),
     };
