@@ -6,6 +6,7 @@ import { HiCheckCircle } from "react-icons/hi2";
 import ImageComponent from "./ImageComponent"
 import styles from './ServiceSection.module.scss'
 import ScrollContext from '../context/ScrollContext';
+import SquaresGrid from "./SquaresGrid";
 
 export default function ServiceSection( props ) {
 
@@ -28,10 +29,12 @@ export default function ServiceSection( props ) {
                 <div className={`column is-two-fifths`}>
                     <div className={`${styles.text}`} >
                         <div className="block is-list is-flex is-size-7" >
+
                             {service?.tags?.map((item, index) => (
                                 <span className="mr-3 pr-3 border-r" key={index}>{item}</span>
                             ))}
                         </div>
+
                       
 
                         <h1 className='title is-spaced is-4 has-text-primary'>{service?.title ? service.title : "Title"}</h1>
@@ -52,6 +55,8 @@ export default function ServiceSection( props ) {
                                     ))}
                                 </ul>
                             )}   */}
+
+
                     </div>
                 </div>
 

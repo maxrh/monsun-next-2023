@@ -5,45 +5,45 @@ import { motion } from 'framer-motion'
 import useRandomHslColor from '../hooks/useRandomHslColor'
 import styles from './SquaresGrid.scss'
 
-const hueRanges = [
-    [0, 30],    [30, 60],   [60, 90],   [90, 120], 
-    [120, 150], [150, 180], [180, 210], [210, 240], 
-    [240, 270], [270, 300], [300, 330], [330, 360]
-];
+export default function SquaresGrid({ size, gap, className, hueRange, dynamic }) {
 
-export default function SquaresGrid({ size, gap, className, hueRange }) {
+    const hueRanges = [
+        [0, 30],    [30, 60],   [60, 90],   [90, 120], 
+        [120, 150], [150, 180], [180, 210], [210, 240], 
+        [240, 270], [270, 300], [300, 330], [330, 360]
+    ];
 
-
+    const newHueRange = hueRanges[Math.floor(Math.random() * hueRanges.length)];
+    
     const [selectedHueRange, setSelectedHueRange] = useState(hueRanges[hueRange])
-    const [randomHueRange, setRandomHueRange] = useState(hueRanges[Math.floor(Math.random() * hueRanges.length)])
+    const [randomHueRange, setRandomHueRange] = useState(newHueRange)
     const [numberOfSquares, setNumberOfSquares] = useState(0)
     const [numColumns, setNumColumns] = useState(0)
     const [isLoading, setIsLoading] = useState(false)  
 
-console.log('randomHueRange', randomHueRange)
-console.log('hueRange', hueRanges[hueRange])
-
     const ref = useRef(null);
     const squareSize = size || 5 
     const gridGap = gap || 20 
-    
+
     useEffect(() => {
         const handleResize = () => {
-            setIsLoading(true) // Set loading state to true
-            if (hueRange) { 
-                setSelectedHueRange(hueRanges[hueRange]) 
-            } else {
-                setRandomHueRange(hueRanges[Math.floor(Math.random() * hueRanges.length)])
-            }
+            dynamic 
+                ? setIsLoading(true) 
+                : setIsLoading(false) 
+            
+            hueRange 
+                ? setSelectedHueRange(hueRanges[hueRange]) 
+                : setRandomHueRange(hueRanges[Math.floor(Math.random() * hueRanges.length)])
 
             if (ref.current) {
                 const { width, height } = ref.current.getBoundingClientRect()
-                let numCols = Math.floor(width / (squareSize + gridGap))
-                let numRows = Math.floor(height / (squareSize + gridGap))
-                if (numCols % 2 === 0) { numCols-- }
+                let numCols = Math.floor(width / (squareSize + gridGap) / 2)
+                let numRows = Math.floor(height / (squareSize + gridGap) )
         
                 setNumColumns(numCols)
                 const totalSquares = numCols * numRows
+
+                console.log('totalSquares', numCols, numRows, totalSquares)
                 setNumberOfSquares(totalSquares)
             }
             setTimeout(() => setIsLoading(false), 500) // Set loading state to false
@@ -51,27 +51,44 @@ console.log('hueRange', hueRanges[hueRange])
         
         handleResize()
 
-        window.addEventListener('resize', handleResize)
-        return () => {
-            window.removeEventListener('resize', handleResize)
+        if (dynamic) {
+            window.addEventListener('resize', handleResize)
+            return () => {
+                window.removeEventListener('resize', handleResize)
+            }
         }
     }, [])
+
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIsLoading(true);
+    
+            if (!hueRange) {
+                const newHueRange = hueRanges[Math.floor(Math.random() * hueRanges.length)];
+                setRandomHueRange(newHueRange);
+            } else {
+                setSelectedHueRange(hueRanges[hueRange]);
+            }
+    
+            setTimeout(() => setIsLoading(false), 50); // adjust delay as needed
+        }, 16500);
+    
+        return () => clearInterval(interval);
+    }, []);
+
     
     const container = {
-        hidden: { opacity: 0 },
-        show: { opacity: 1,
-            transition: {
-                duration: 0.25,                 
-            },
-        },
+        hidden: { opacity: 1 },
+        show: { opacity: 1, transition: { duration: 0.25 } }
     };
     
     const squares = useMemo(() => {
-
         return Array.from({ length: numberOfSquares }, (_, i) => {
             const row = Math.floor(i / numColumns);
             const column = i % numColumns;
-     
+            const color = useRandomHslColor(hueRange ? selectedHueRange : randomHueRange)
+
             return (
                 <motion.div
                     key={i} 
@@ -79,66 +96,68 @@ console.log('hueRange', hueRanges[hueRange])
                         hidden: { opacity: 1, backgroundColor: 'hsla(0, 0%, 0%, 0.5)' },
                         show: { 
                             opacity: 1,
-                            backgroundColor: useRandomHslColor(hueRange ? selectedHueRange : randomHueRange),
+                            backgroundColor: [ 'hsla(0, 0%, 0%, 0.5)', color, 'hsla(0, 0%, 0%, 0.5)'],
+                            transition: { 
+                                type: 'linear',
+                                delay: 2 + (Math.random() * -i / numberOfSquares + 0.1) - 0.1 ,  
+                                duration: 5,
+                                restDelta: 0.05,
+                            }
                         }
                     }}
                     className="square"
-                    transition={{ 
-                        delay: 2 + i * -0.0015 + (Math.random() * 1 + 0.1) ,  
-                        duration: 2,
-                        ease: "linear",
-                    }}
+                    
                     style={{ 
                         width: `${squareSize}px`, 
                         height: `${squareSize}px`,
                         gridRow: row + 1,
-                        gridColumn: (row % 2 ? column * 2 : column * 2 + 1) + 1,
-                    }}
-                    
-                />
-                
-            );
-            
-        });
-        
-    }, [numberOfSquares, squareSize]);
-
-    
-    return (
-        <>
-
-            { isLoading ? (
-                <div 
-                    ref={ref} 
-                    className={`square-grid ${className}`} 
-                    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3rem' }}
-                >
-                    <span className="bulma-loader-mixin"></span>
-                </div>
-
-            ) : (
-                <motion.div 
-                    ref={ref} 
-                    className={`square-grid ${className}`} 
-                    initial="hidden"
-                    animate="show"
-                    variants={container}
-                    style={{
-                        display: 'grid',
-                        gridTemplateColumns: `repeat(${numColumns * 2}, ${squareSize}px)`,
-                        justifyContent: 'center',
-                        gridColumnGap: `${gridGap}px`,
-                        gridRowGap: `${gridGap}px`,
+                        gridColumn: 2 * column + 1 + row % 2,
+                        transformStyle: 'preserve-3d',
                         perspective: '1000px',
                     }}
-                    
-                >
+                />
+            ); 
+        });
+    }, [numberOfSquares, squareSize, randomHueRange, selectedHueRange]);
 
-                    {squares}
 
-                </motion.div>
-            )}
+    const loadingSquares = useMemo(() => {
+        return Array.from({ length: numberOfSquares }, (_, i) => {
+            const row = Math.floor(i / numColumns);
+            const column = i % numColumns;
 
-       </>
+            return (
+                <div
+                    key={i} 
+                    className="square"
+                    style={{ 
+                        backgroundColor: 'hsla(0, 0%, 0%, 0.5)',
+                        width: `${squareSize}px`, 
+                        height: `${squareSize}px`,
+                        gridRow: row + 1,
+                        gridColumn: 2 * column + 1 + row % 2,
+                    }}
+                />
+            ); 
+        });
+    }, [numberOfSquares, squareSize, randomHueRange, selectedHueRange]);
+
+    return (
+        <motion.div 
+            ref={ref} 
+            className={`square-grid ${className}`} 
+            initial="hidden"
+            animate="show"
+            variants={container}
+            style={{
+                display: 'grid',
+                gridTemplateColumns: `repeat(${numColumns}, ${squareSize}px)`,
+                gridColumnGap: `${gridGap}px`,
+                gridRowGap: `${gridGap}px`,
+                perspective: '1000px',
+            }}
+        >
+            { isLoading ? loadingSquares : squares }
+        </motion.div>
     );
 }

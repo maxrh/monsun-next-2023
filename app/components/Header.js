@@ -96,7 +96,9 @@ export default function Header() {
                                     </div>
                                 </div>
                             </div>
+
                         </motion.nav>
+
                 </div>
                     <motion.div 
                         className="hero-body"
@@ -132,13 +134,12 @@ export default function Header() {
                     </div>
                     
 
-                    <div  
-                        className="hero-grid"
-                   
-                    >
-                        <SquaresGrid className="hero-squares hero-grid-item-1" size={10} gap={15} hueRange={NaN} />
+                    <div className="hero-grid">
+                        <SquaresGrid className="hero-squares" size={10} gap={15} hueRange={NaN} dynamic/> 
                     </div>
             </section>
+            {/* <SquaresGrid className="navbar-squares" size={5} gap={5} hueRange={NaN}  /> */}
+
         </header>
     )
 }

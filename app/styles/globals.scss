@@ -19,7 +19,6 @@
     --body-background-color-lighter: #{$body-background-color-lighter};
 
 
-
     --text-light: #{$text-light};
     --text-lighter: #{$text-lighter};
 
@@ -35,6 +34,13 @@
     --site-header-small-height: #{$site-header-small-height};
 
     --navbar-shadow: #{$navbar-shadow};
+
+
+    // RGB values
+
+    --body-background-color-rgb: 245, 245, 245;
+    --body-background-color-light-rgb: 245, 245, 245;
+
 
 }
 
@@ -55,6 +61,11 @@ html[data-theme='dark'] {
     --border-color: #{$border-invert};
 
     --navbar-shadow: #{$navbar-shadow-theme-dark};
+
+    // RGB values
+    
+    --body-background-color-rgb: 25, 33, 44;
+    --body-background-color-light-rgb: 18, 23, 31;
 
 }
 
@@ -208,6 +219,7 @@ h6, h6.title {
 .hero {
     .hero-head {
         height: var(--navbar-big-height);
+        position: relative;
     }
 
     .hero-body {
@@ -276,19 +288,20 @@ h6, h6.title {
 .hero-grid {
     position: absolute;
     top:  150px;
-    left: 50%;
+    left: 45px;
     bottom: 100px;
-    width: 90vw;
-    transform: translateX(-50%); ;
+    right: 45px;
+    max-width: 100%;
 }
 
 // squares grid
 
 .hero-squares {
-    overflow: hidden;
-
+    max-width: 100%;
+    
     .square {
         position: relative;
+        border-radius: 3px;
 
         &:after {
             content: '';
@@ -299,6 +312,37 @@ h6, h6.title {
             bottom: -10px;
             pointer-events: all;
         }
+    }
+}
+
+.navbar-squares {
+    overflow: hidden;
+
+    
+    width: 150px !important;
+    height: 150px !important;
+
+    position: absolute;
+    left: 0;
+
+    .square {
+        z-index: -1;
+        border-radius: 20px;
+
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        width: 100% !important;
+        height: 100% !important;
+        background-image: linear-gradient(to bottom right, rgb(var(--body-background-color-rgb), 0) 0%, rgb(var(--body-background-color-rgb)) 50%) !important;
+        z-index: 1 !important;
+        opacity: 1 !important;
     }
 }
 
