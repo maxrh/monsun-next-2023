@@ -88,6 +88,7 @@ body {
     background: var(--body-background-color);
     font-size: 17px;
     z-index: 0;
+    background-image: linear-gradient( to bottom,  rgb(var(--body-background-color-light-rgb)) 500px, rgb(var(--body-background-color-rgb)) 100%);
 }
 
 .main {
@@ -233,7 +234,7 @@ h6, h6.title {
 .hero {
     position: relative;
     // background-image: linear-gradient(to bottom right, rgb(var(--body-background-color-light-rgb)) 0%, rgb(var(--body-background-color-rgb)) 80%);
-
+    box-shadow: 0 0 200px 0 rgba(0, 0, 0, .4);
     .hero-head {
         height: var(--navbar-big-height);
         position: relative;
@@ -249,7 +250,7 @@ h6, h6.title {
         // grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
         // grid-template-rows: repeat(auto-fill, minmax(10px, 1fr));
         padding: 0;
-        text-align: right;
+        text-align: left;
 
         &-box {
             display: inline-flex;
@@ -261,7 +262,7 @@ h6, h6.title {
             //background-color: var(--body-background-color-light);
             // grid-column: -60 / end; // Start from the end and span 50 columns towards the start
             // grid-row: span 10; 
-            padding: 2rem 6rem 2rem;
+            padding: 2rem 3rem 2rem;
             // &::after {
             //     content: '';
             //     position: absolute;
@@ -281,8 +282,6 @@ h6, h6.title {
     .hero-foot {
         position: relative;
         z-index: 10;
-        border-bottom: 1px solid var(--border-color);
-        padding: .5rem 0;
     }
 }
 
@@ -306,13 +305,12 @@ h6, h6.title {
 
 
 .hero-title {
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 0;
     color: var(--body-background-color-lighter);
     line-height: 1.1;
     word-wrap: break-word;
-    display: inline;
     span {
         color: $primary;
     }
@@ -321,21 +319,26 @@ h6, h6.title {
 
 .hero-body {
     position: absolute;
-    top:  80px;
-    left: 0;
-    bottom: 80px;
-    right: 0;
+    top:  90px;
+    left: 6rem;
+    bottom: 100px;
+    right: 6rem;
     max-width: 100%;
+    border-bottom:  1px solid rgba(var(--body-background-color-lighter-rgb), .75);
+
 }
 
 
 .hero-grid {
     opacity: .75;
     position: absolute;
-    top:  100px;
-    left: 3rem;
-    right: 3rem;
-    bottom: 80px;
+    top:  130px;
+    left: 5rem;
+    right: 5rem;
+    bottom: 170px;
+    padding-bottom: 50px;
+    padding-top: 0px;
+
 }
 
 // squares grid

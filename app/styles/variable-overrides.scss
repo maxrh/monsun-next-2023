@@ -48,7 +48,7 @@ $scheme-main: $white;
 $scheme-invert: $theme-dark;
 
 $border: rgba($scheme-invert, 0.1);
-$border-invert: rgba($theme-dark, .8);
+$border-invert: rgba($theme-dark, 1);
 
 $text: $grey-dark;
 $text-invert: $grey-lighter;
@@ -84,7 +84,7 @@ $body-background-color-lighter-invert:  $theme-darkest;
 $navbar-height: 3.75rem;
 $navbar-big-height: 5rem;
 
-$site-header-height: 500px;
+$site-header-height: 600px;
 $site-header-big-height: 50rem;
 $site-header-small-height: 18.75rem;
 

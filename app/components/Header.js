@@ -109,7 +109,7 @@ export default function Header() {
                         transition={{ duration: .5 }} 
                     >
                         <div className="hero-body-box">
-                            <h1 className='hero-title'>Excepteur sint occaecat cupidatat</h1>
+                            <h1 className='hero-title'>United colors of Monsun</h1>
                         </div>
 
                     </motion.div>

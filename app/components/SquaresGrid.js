@@ -79,16 +79,17 @@ export default function SquaresGrid({ size, gap, className, hueRange, dynamic })
             const row = Math.floor(i / numColumns);
             const column = i % numColumns;
             const color = useRandomHslColor(hueRange ? selectedHueRange : randomHueRange)
-            const transitionColor = 'hsla(218, 29%, 5%, .5)'
-            const colorRoullette = Math.random() >= 0.9 ? color : transitionColor
+            const transitionColor = 'rgb(9, 12, 16)'
+            const colorRoullette = Math.random() >= 0.25 ? color : transitionColor
 
             return (
                 <motion.div
                     key={i} 
                     className="square"
-                    initial={{ opacity: 1, backgroundColor: transitionColor}}
+                    initial={{ scale: 1, opacity: 1, backgroundColor: transitionColor}}
                     exit={{ opacity: 1, backgroundColor: transitionColor}}
                     animate={{
+                        scale: colorRoullette === color ? 1 : 1,
                         opacity: 1 ,
                         backgroundColor: colorRoullette,
                         transition: {
@@ -114,16 +115,17 @@ export default function SquaresGrid({ size, gap, className, hueRange, dynamic })
             const row = Math.floor(i / numColumns);
             const column = i % numColumns;
             const color = useRandomHslColor(hueRange ? selectedHueRange : randomHueRange)
-            const transitionColor = 'hsla(218, 29%, 5%, .5)'
-            const colorRoullette = Math.random() >= 0.9 ? color : transitionColor
+            const transitionColor = 'rgb(9, 12, 16)'
+            const colorRoullette = Math.random() >= 0.25 ? color : transitionColor
 
             return (
                 <motion.div
                     key={i} 
                     className="square"
-                    initial={{ opacity: 1, backgroundColor: transitionColor }}
+                    initial={{ scale: 1, opacity: 1, backgroundColor: transitionColor }}
                     exit={{ opacity: 1, backgroundColor: transitionColor }}
                     animate={{
+                        scale: colorRoullette === color ? 1 : 1,
                         opacity: 1 ,
                         backgroundColor: colorRoullette,
                         transition: {
