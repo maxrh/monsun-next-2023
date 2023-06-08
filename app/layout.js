@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ThemeProviders } from './themeProviders'
+import SquaresGrid from './components/SquaresGrid';
 import ScrollContext from './context/ScrollContext';
 import Header from './components/Header'
 import Footer from './components/Footer'

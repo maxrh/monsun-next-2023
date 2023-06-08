@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState, useMemo, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import useRandomHslColor from '../hooks/useRandomHslColor'
 import styles from './SquaresGrid.scss'
 
@@ -20,6 +20,7 @@ export default function SquaresGrid({ size, gap, className, hueRange, dynamic })
     const [numberOfSquares, setNumberOfSquares] = useState(0)
     const [numColumns, setNumColumns] = useState(0)
     const [isLoading, setIsLoading] = useState(false)  
+    const [isTouched, setIsTouched] = useState()  
 
     const ref = useRef(null);
     const squareSize = size || 5 
@@ -28,12 +29,8 @@ export default function SquaresGrid({ size, gap, className, hueRange, dynamic })
     useEffect(() => {
         const handleResize = () => {
             dynamic 
-                ? setIsLoading(true) 
+                ? setIsLoading(isLoading ? false : true) 
                 : setIsLoading(false) 
-            
-            hueRange 
-                ? setSelectedHueRange(hueRanges[hueRange]) 
-                : setRandomHueRange(hueRanges[Math.floor(Math.random() * hueRanges.length)])
 
             if (ref.current) {
                 const { width, height } = ref.current.getBoundingClientRect()
@@ -42,11 +39,9 @@ export default function SquaresGrid({ size, gap, className, hueRange, dynamic })
         
                 setNumColumns(numCols)
                 const totalSquares = numCols * numRows
-
-                console.log('totalSquares', numCols, numRows, totalSquares)
                 setNumberOfSquares(totalSquares)
             }
-            setTimeout(() => setIsLoading(false), 500) // Set loading state to false
+            setTimeout(() => setIsLoading(false), 10000) // Set loading state to false
         } 
         
         handleResize()
@@ -59,28 +54,24 @@ export default function SquaresGrid({ size, gap, className, hueRange, dynamic })
         }
     }, [])
 
-
     useEffect(() => {
         const interval = setInterval(() => {
             setIsLoading(true);
-    
             if (!hueRange) {
                 const newHueRange = hueRanges[Math.floor(Math.random() * hueRanges.length)];
                 setRandomHueRange(newHueRange);
             } else {
                 setSelectedHueRange(hueRanges[hueRange]);
             }
-    
-            setTimeout(() => setIsLoading(false), 50); // adjust delay as needed
-        }, 16500);
+            setTimeout(() => setIsLoading(false), 10000); // adjust delay as needed
+        }, 20000);
     
         return () => clearInterval(interval);
     }, []);
 
-    
     const container = {
-        hidden: { opacity: 1 },
-        show: { opacity: 1, transition: { duration: 0.25 } }
+        hidden: { opacity: 0 },
+        show: { opacity: 1, transition: { duration: 1 } }
     };
     
     const squares = useMemo(() => {
@@ -88,50 +79,60 @@ export default function SquaresGrid({ size, gap, className, hueRange, dynamic })
             const row = Math.floor(i / numColumns);
             const column = i % numColumns;
             const color = useRandomHslColor(hueRange ? selectedHueRange : randomHueRange)
+            const transitionColor = 'hsla(218, 29%, 5%, .5)'
+            const colorRoullette = Math.random() >= 0.9 ? color : transitionColor
 
             return (
                 <motion.div
                     key={i} 
-                    variants={{
-                        hidden: { opacity: 1, backgroundColor: 'hsla(0, 0%, 0%, 0.5)' },
-                        show: { 
-                            opacity: 1,
-                            backgroundColor: [ 'hsla(0, 0%, 0%, 0.5)', color, 'hsla(0, 0%, 0%, 0.5)'],
-                            transition: { 
-                                type: 'linear',
-                                delay: 2 + (Math.random() * -i / numberOfSquares + 0.1) - 0.1 ,  
-                                duration: 5,
-                                restDelta: 0.05,
-                            }
+                    className="square"
+                    initial={{ opacity: 1, backgroundColor: transitionColor}}
+                    exit={{ opacity: 1, backgroundColor: transitionColor}}
+                    animate={{
+                        opacity: 1 ,
+                        backgroundColor: colorRoullette,
+                        transition: {
+                            type: 'easeInOut',
+                            duration: 3,
+                            delay: 1 + (Math.random() * numColumns + 0.1) / 4 - 0.1 ,
                         }
                     }}
-                    className="square"
-                    
+                    onMouseEnter={() => setIsTouched(i)}
                     style={{ 
                         width: `${squareSize}px`, 
                         height: `${squareSize}px`,
                         gridRow: row + 1,
                         gridColumn: 2 * column + 1 + row % 2,
-                        transformStyle: 'preserve-3d',
-                        perspective: '1000px',
                     }}
                 />
             ); 
         });
     }, [numberOfSquares, squareSize, randomHueRange, selectedHueRange]);
 
-
     const loadingSquares = useMemo(() => {
         return Array.from({ length: numberOfSquares }, (_, i) => {
             const row = Math.floor(i / numColumns);
             const column = i % numColumns;
+            const color = useRandomHslColor(hueRange ? selectedHueRange : randomHueRange)
+            const transitionColor = 'hsla(218, 29%, 5%, .5)'
+            const colorRoullette = Math.random() >= 0.9 ? color : transitionColor
 
             return (
-                <div
+                <motion.div
                     key={i} 
                     className="square"
-                    style={{ 
-                        backgroundColor: 'hsla(0, 0%, 0%, 0.5)',
+                    initial={{ opacity: 1, backgroundColor: transitionColor }}
+                    exit={{ opacity: 1, backgroundColor: transitionColor }}
+                    animate={{
+                        opacity: 1 ,
+                        backgroundColor: colorRoullette,
+                        transition: {
+                            type: 'easeInOut',
+                            duration: 3,
+                            delay: 1 + (Math.random() * numColumns + 0.1) / 4 - 0.1 ,
+                        }
+                    }}
+                    style={{
                         width: `${squareSize}px`, 
                         height: `${squareSize}px`,
                         gridRow: row + 1,
@@ -157,7 +158,9 @@ export default function SquaresGrid({ size, gap, className, hueRange, dynamic })
                 perspective: '1000px',
             }}
         >
-            { isLoading ? loadingSquares : squares }
+            <AnimatePresence >
+                { isLoading ? loadingSquares : squares }
+            </AnimatePresence>
         </motion.div>
     );
 }

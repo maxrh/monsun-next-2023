@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
+import Image from 'next/image'
 import Link from 'next/link'
 import ThemeSwitchWidget from './ThemeSwitchWidget'
 import NavAnchorMenu from './NavAnchorMenu'
@@ -63,7 +63,7 @@ export default function Header() {
                             </div>
 
                             <div id="navbarBasicExample" className="navbar-menu">
-                                    <motion.div className="hero-head-anchor-menu navbar-start ml-6"
+                                    <motion.div className="hero-head-anchor-menu navbar-start ml-3"
                                         animate={{ 
                                             opacity: (!isScrolled && isHovering) ? 1 : isScrolled ? 1 : 0, 
                                             x: (!isScrolled && isHovering) ? 0 : isScrolled ? 0 : -30 
@@ -109,7 +109,7 @@ export default function Header() {
                         transition={{ duration: .5 }} 
                     >
                         <div className="hero-body-box">
-                            <h1 className='hero-title'>Colors</h1>
+                            <h1 className='hero-title'>Excepteur sint occaecat cupidatat</h1>
                         </div>
 
                     </motion.div>
@@ -137,9 +137,8 @@ export default function Header() {
                     <div className="hero-grid">
                         <SquaresGrid className="hero-squares" size={10} gap={15} hueRange={NaN} dynamic/> 
                     </div>
+                    {/* <Image className="hero-image" src="https://picsum.photos/1600/600" width="1600" height="600" priority={true} placeholder /> */}
             </section>
-            {/* <SquaresGrid className="navbar-squares" size={5} gap={5} hueRange={NaN}  /> */}
-
         </header>
     )
 }

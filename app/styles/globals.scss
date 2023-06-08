@@ -39,7 +39,8 @@
     // RGB values
 
     --body-background-color-rgb: 245, 245, 245;
-    --body-background-color-light-rgb: 245, 245, 245;
+    --body-background-color-light-rgb: 235, 235, 235;
+    --body-background-color-lighter-rgb: 200, 200, 200;
 
 
 }
@@ -48,7 +49,7 @@ html[data-theme='dark'] {
 
     --body-color: #{$body-color-invert};
 
-    --body-background-color: #{$body-background-color-invert};
+    --body-background-color: #{$body-background-color-light-invert};
     --body-background-color-transparent: #{$body-background-color-transparent-invert};
 
 
@@ -66,6 +67,7 @@ html[data-theme='dark'] {
     
     --body-background-color-rgb: 25, 33, 44;
     --body-background-color-light-rgb: 18, 23, 31;
+    --body-background-color-lighter-rgb: 9, 12, 16;
 
 }
 
@@ -156,8 +158,11 @@ h6, h6.title {
 }
 
 .page-container {
-    display: flex;
-    flex-direction: column;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .site-header {
@@ -194,7 +199,6 @@ h6, h6.title {
 }
 
 .site-logo {
-    background-color: var(--theme-primary-color);
     color: var(--body-background-color);
     margin-left: -1rem;
     display: flex;
@@ -203,6 +207,16 @@ h6, h6.title {
     padding: 0.5rem 2.25rem;
     font-weight: 700;
     font-size: 1.75rem;
+    line-height: 0;
+
+    &::before {
+        content: '';
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: var(--theme-primary-color);
+        border-radius: 3px;
+        margin-right: 15px;
+    }
 }
 
 
@@ -217,6 +231,9 @@ h6, h6.title {
 // Hero & Navbar
 
 .hero {
+    position: relative;
+    // background-image: linear-gradient(to bottom right, rgb(var(--body-background-color-light-rgb)) 0%, rgb(var(--body-background-color-rgb)) 80%);
+
     .hero-head {
         height: var(--navbar-big-height);
         position: relative;
@@ -225,29 +242,47 @@ h6, h6.title {
     .hero-body {
         z-index: 10;
         pointer-events: none;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
-        grid-template-rows: repeat(auto-fill, minmax(10px, 1fr));
+        display: flex;
+        align-items: flex-end;
+        justify-content:flex-end;
+        // display: grid;
+        // grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
+        // grid-template-rows: repeat(auto-fill, minmax(10px, 1fr));
         padding: 0;
+        text-align: right;
 
         &-box {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--body-background-color-light);
-            padding: 15px 45px 45px;
             pointer-events: all;
-            grid-column: -34 / end; // Start from the end and span 50 columns towards the start
-            grid-row: span 10; 
-            height: 100%;
-            width: 100%;
+            position: relative;
+            max-width: 700px;
+            //background-color: var(--body-background-color-light);
+            // grid-column: -60 / end; // Start from the end and span 50 columns towards the start
+            // grid-row: span 10; 
+            padding: 2rem 6rem 2rem;
+            // &::after {
+            //     content: '';
+            //     position: absolute;
+            //     left:  -50px;
+            //     bottom: 0px;
+            //     z-index: -1 !important;
+            //     opacity: 1 !important;
+            //     width: 100px; 
+            //     height: 100px;
+            //     clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
+            //     background-color: var(--body-background-color-light);
+            // }
+     
         }
     }
 
     .hero-foot {
-        .navbar {
-            z-index: 30;
-        }
+        position: relative;
+        z-index: 10;
+        border-bottom: 1px solid var(--border-color);
+        padding: .5rem 0;
     }
 }
 
@@ -271,11 +306,11 @@ h6, h6.title {
 
 
 .hero-title {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 700;
     margin-bottom: 0;
     color: var(--body-background-color-lighter);
-    line-height: .8;
+    line-height: 1.1;
     word-wrap: break-word;
     display: inline;
     span {
@@ -284,20 +319,29 @@ h6, h6.title {
 }
 
 
-.hero-body,
-.hero-grid {
+.hero-body {
     position: absolute;
-    top:  150px;
-    left: 45px;
-    bottom: 100px;
-    right: 45px;
+    top:  80px;
+    left: 0;
+    bottom: 80px;
+    right: 0;
     max-width: 100%;
+}
+
+
+.hero-grid {
+    opacity: .75;
+    position: absolute;
+    top:  100px;
+    left: 3rem;
+    right: 3rem;
+    bottom: 80px;
 }
 
 // squares grid
 
 .hero-squares {
-    max-width: 100%;
+    
     
     .square {
         position: relative;
@@ -318,33 +362,51 @@ h6, h6.title {
 .navbar-squares {
     overflow: hidden;
 
-    
-    width: 150px !important;
-    height: 150px !important;
-
     position: absolute;
-    left: 0;
+    top:15px;
+    bottom: 60px;
+    left: 15px;
+    right: 15px;
+    height: auto !important;
+    width: auto !important;
 
     .square {
         z-index: -1;
-        border-radius: 20px;
+        border-radius: 2px;
 
     }
 
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
-        width: 100% !important;
-        height: 100% !important;
-        background-image: linear-gradient(to bottom right, rgb(var(--body-background-color-rgb), 0) 0%, rgb(var(--body-background-color-rgb)) 50%) !important;
-        z-index: 1 !important;
-        opacity: 1 !important;
-    }
+    // &::after {
+    //     content: '';
+    //     position: absolute;
+    //     top: 0px;
+    //     left: 0px;
+    //     right: 0px;
+    //     bottom: 0px;
+    //     width: 100% !important;
+    //     height: 100% !important;
+    //     background-image: linear-gradient(to bottom, rgb(var(--body-background-color-light-rgb), 0) 60%, rgb(var(--body-background-color-light-rgb)) 100%) !important;
+    //     z-index: 1 !important;
+    //     opacity: 1 !important;
+    // }
 }
+
+.body-grid {
+    position: absolute; /* This will make the div position relative to the nearest positioned ancestor (instead of relative to the viewport) */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    height: 100%; /* Make it fill the height of the body */
+    width: 100%; /* Make it fill the width of the body */
+    opacity: .5;
+    padding: 3rem;
+
+}
+
+.body-squares {
+    height: 100%;
+    width: 100%;
+   
+}   
 
 .bulma-loader-mixin {
     @include loader;

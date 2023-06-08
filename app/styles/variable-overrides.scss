@@ -42,13 +42,13 @@ $danger: rgb(255, 0, 0);
 $theme-lightest: rgb(176, 190, 208);
 $theme-dark: rgb(25, 33, 44);
 $theme-darker: rgb(18, 23, 31);
-$theme-darkest: rgb(10, 13, 18);
+$theme-darkest: rgb(9, 12, 16);
 
 $scheme-main: $white;
 $scheme-invert: $theme-dark;
 
 $border: rgba($scheme-invert, 0.1);
-$border-invert: rgba($scheme-main, 0.1);
+$border-invert: rgba($theme-dark, .8);
 
 $text: $grey-dark;
 $text-invert: $grey-lighter;
@@ -84,7 +84,7 @@ $body-background-color-lighter-invert:  $theme-darkest;
 $navbar-height: 3.75rem;
 $navbar-big-height: 5rem;
 
-$site-header-height: 550px;
+$site-header-height: 500px;
 $site-header-big-height: 50rem;
 $site-header-small-height: 18.75rem;
 
