@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image'
 import Link from 'next/link'
 import ThemeSwitchWidget from './ThemeSwitchWidget'
 import NavAnchorMenu from './NavAnchorMenu'
-import SquaresGrid from "./SquaresGrid";
 import styles from './Header.module.scss'
 
 export default function Header() {
@@ -29,28 +27,27 @@ export default function Header() {
 
     return (
         <header className='site-header'>
-            <section className='hero is-background-light'>
-                <div className="hero-head is-flex">
-                        <motion.nav 
-                            className="navbar is-fixed-top pl-4 pr-4" 
-                            role="navigation" 
-                            aria-label="main navigation"
-                            initial={{ 
-                                opacity: 0,
-                                height: 'var(--navbar-big-height)', 
-                                backgroundColor: 'var(--body-background-color-transparent)', 
-                                boxShadow: '1px 1px 12px rgba(0, 0, 0, 0)' 
-                            }}
-                            animate={{ 
-                                opacity: 1,
-                                height: isScrolled ? 'var(--navbar-height)' : 'var(--navbar-big-height)',
-                                backgroundColor: isScrolled ? 'var(--body-background-color)' : 'var(--body-background-color-transparent)', 
-                                boxShadow: isScrolled ? 'var(--navbar-shadow)' : '1px 1px 12px rgba(0, 0, 0, 0)' 
-                            }}
 
-                            transition={{ duration: .5 }}
+            <nav 
+                className="main-navigation navbar container" 
+                role="navigation" 
+                aria-label="main navigation"
+                // initial={{ 
+                //     opacity: 0,
+                //     height: 'var(--navbar-big-height)', 
+                //     backgroundColor: 'var(--body-background-color-transparent)', 
+                //     boxShadow: '1px 1px 12px rgba(0, 0, 0, 0)' 
+                // }}
+                // animate={{ 
+                //     opacity: 1,
+                //     height: isScrolled ? 'var(--navbar-height)' : 'var(--navbar-big-height)',
+                //     backgroundColor: isScrolled ? 'var(--body-background-color)' : 'var(--body-background-color-transparent)', 
+                //     boxShadow: isScrolled ? 'var(--navbar-shadow)' : '1px 1px 12px rgba(0, 0, 0, 0)' 
+                // }}
 
-                        >
+                // transition={{ duration: .5 }}
+
+            >
 
                             <div className="navbar-brand">
                                 <Link className="navbar-item site-logo" href="/">monsun</Link>
@@ -63,7 +60,7 @@ export default function Header() {
                             </div>
 
                             <div id="navbarBasicExample" className="navbar-menu">
-                                    <motion.div className="hero-head-anchor-menu navbar-start ml-3"
+                                    <motion.div className="header-anchor-menu navbar-start ml-3"
                                         animate={{ 
                                             opacity: (!isScrolled && isHovering) ? 1 : isScrolled ? 1 : 0, 
                                             x: (!isScrolled && isHovering) ? 0 : isScrolled ? 0 : -30 
@@ -91,54 +88,15 @@ export default function Header() {
                                         </div>
                                     </div>
 
-                                    <div className="navbar-item">
+                                    <div className="navbar-item pr-0">
                                         <ThemeSwitchWidget />
                                     </div>
                                 </div>
                             </div>
 
-                        </motion.nav>
-
-                </div>
-                    <motion.div 
-                        className="hero-body"
-                        initial={{ opacity: 0 }}
-                        animate={{ 
-                            opacity: isScrolled ? 0 : 1 
-                        }}
-                        transition={{ duration: .5 }} 
-                    >
-                        <div className="hero-body-box">
-                            <h1 className='hero-title'>United colors of Monsun</h1>
-                        </div>
-
-                    </motion.div>
-                    
-
-                    <div className="hero-foot">
-                        <nav className="navbar container">
-                            <motion.div 
-                                key="hero-foot-anchor-menu"
-                                className="hero-foot-anchor-menu navbar-start"
-                                animate={{ 
-                                    opacity: (!isScrolled && isHovering) ? 0 : isScrolled ? 0 : 1, 
-                                    x: (!isScrolled && isHovering) ? -30 : isScrolled ? -30 : 0 
-                                }}
-                            
-                                initial={{ opacity: 0, x: 0 }}
-                                transition={{ duration: .5, delay: .5 }} 
-                            >
-                                <NavAnchorMenu isScrolled={isScrolled} />
-                            </motion.div>
                         </nav>
-                    </div>
-                    
 
-                    <div className="hero-grid">
-                        <SquaresGrid className="hero-squares" size={10} gap={15} hueRange={NaN} dynamic/> 
-                    </div>
-                    {/* <Image className="hero-image" src="https://picsum.photos/1600/600" width="1600" height="600" priority={true} placeholder /> */}
-            </section>
+                        
         </header>
     )
 }

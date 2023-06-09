@@ -1,5 +1,5 @@
 import ServiceSection from "./components/ServiceSection";
-import SquaresGrid from "./components/SquaresGrid";
+import HeroSection from "./components/HeroSection";
 import styles from './page.module.scss'
 
 const getServices = async () => {
@@ -14,6 +14,7 @@ export default async function Home() {
     return (
 
         <main className="main container">
+            <HeroSection />
             {services.web && <ServiceSection serviceName={"web"} service={services.web} reverse />}
             {services.grafik && <ServiceSection serviceName={"grafik"} service={services.grafik} />}
             {services.foto && <ServiceSection serviceName={"foto"} service={services.foto} reverse />}

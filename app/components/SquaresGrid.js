@@ -8,9 +8,8 @@ import styles from './SquaresGrid.scss'
 export default function SquaresGrid({ size, gap, className, hueRange, dynamic }) {
 
     const hueRanges = [
-        [0, 30],    [30, 60],   [60, 90],   [90, 120], 
-        [120, 150], [150, 180], [180, 210], [210, 240], 
-        [240, 270], [270, 300], [300, 330], [330, 360]
+        [0, 30], [30, 60], [150, 180], [180, 210], 
+        [210, 240], [240, 270], [270, 300], [300, 330], [330, 360]
     ];
 
     const newHueRange = hueRanges[Math.floor(Math.random() * hueRanges.length)];
@@ -21,6 +20,8 @@ export default function SquaresGrid({ size, gap, className, hueRange, dynamic })
     const [numColumns, setNumColumns] = useState(0)
     const [isLoading, setIsLoading] = useState(false)  
     const [isTouched, setIsTouched] = useState()  
+
+    console.log('randomHueRange', randomHueRange)
 
     const ref = useRef(null);
     const squareSize = size || 5 

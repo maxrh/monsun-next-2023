@@ -20,7 +20,7 @@ export default function ThemeSwitchWidget() {
 
     if (!mounted) {
         return (
-            <div className={styles.container}>
+            <div className={styles.themeSwitchWidget}>
                 <span className={styles.label}>Theme:</span>
                 <div className={styles.switch} >
                     <div className={styles.handle} ></div>
@@ -30,7 +30,7 @@ export default function ThemeSwitchWidget() {
     }
 
 return (
-    <div className={styles.container}>
+    <div className={styles.themeSwitchWidget}>
         <span className={styles.label}>Theme:</span>
 
         <div 

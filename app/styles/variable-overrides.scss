@@ -4,13 +4,13 @@
 // Override Bulma variables here
 
 $block-spacing: 2rem;
-$column-gap: 3rem;
+$column-gap: 4rem;
 
 // Breakpoints
 
 $desktop: 1024px;
-$widescreen: 1264px;
-$fullhd: 1264px;
+$widescreen: 1354px;
+$fullhd: 1354px;
 
 // Typography
 
@@ -84,9 +84,12 @@ $body-background-color-lighter-invert:  $theme-darkest;
 $navbar-height: 3.75rem;
 $navbar-big-height: 5rem;
 
-$site-header-height: 600px;
+$site-header-height: 700px;
 $site-header-big-height: 50rem;
 $site-header-small-height: 18.75rem;
 
 $navbar-shadow: 1px 1px 12px rgba(0,0,0,.1);
 $navbar-shadow-theme-dark: 1px 1px 12px rgba(0,0,0,.35);
+
+
+$site-padding: 3rem;

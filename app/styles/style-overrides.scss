@@ -5,6 +5,11 @@
     font-weight: 700;
 }
 
+.title.is-huge {
+    font-size: 5.5rem;
+    line-height: .85;
+}
+
 .subtitle {
     color: var(--text-light);
     line-height: $subtitle-line-height;
@@ -80,15 +85,15 @@
 }
 
 .container {
-    padding-left: 4rem;
-    padding-right: 4rem;
+    padding-left: 45px;
+    padding-right: 45px;
     width: 100%;
 }
 
 @media screen and (min-width: 1024px) {
     .container {
-        padding-left: 0;
-        padding-right: 0;
+        padding-left: 45px;
+        padding-right: 45px;
     }
 }
 
@@ -127,4 +132,8 @@ a.navbar-item:not(.is-active):focus-within,
 
 .navbar-link:not(.is-arrowless)::after {
     margin-top: -0.5em; 
+}
+
+.navbar {
+    background-color: var(--body-background-color-transparent);
 }

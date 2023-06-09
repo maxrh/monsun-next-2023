@@ -24,7 +24,7 @@ export default function NavAnchorMenu({ isScrolled }) {
     }
   
     return (
-            <ul className={`${styles.container} anchor-menu`}>
+            <ul className={`${styles.navAnchorMenu} anchor-menu`}>
 
                 <li><Link href="#" onClick={scrollToTop} className={`navbar-item ${isScrolled ? '' : 'is-active'}`} scroll={false}>Intro</Link></li>
                 <li><Link href="#web" className={`navbar-item ${isScrolled && inView === 'web' ? 'is-active' : ''}`} scroll={false}>Web</Link></li>
