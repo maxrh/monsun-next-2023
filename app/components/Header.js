@@ -74,9 +74,9 @@ export default function Header() {
                                     </motion.div>
                                 <div className="main-menu navbar-end">
 
-                                    <Link className="navbar-item is-active" href="#">Hvad</Link>
-                                    <Link className="navbar-item" href="#">Hvordan</Link>
-                                    <Link className="navbar-item " href="#">Hvorfor</Link>
+                                    <Link className="navbar-item is-active" href="/">Hvad</Link>
+                                    <Link className="navbar-item" href="/hvordan">Hvordan</Link>
+                                    <Link className="navbar-item " href="/hvorfor">Hvorfor</Link>
 
                                     <div className="navbar-item has-dropdown is-hoverable">
                                         <Link className="navbar-link" href="#">Hvem</Link>

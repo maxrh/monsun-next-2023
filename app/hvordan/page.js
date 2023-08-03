@@ -1,7 +1,7 @@
 
-const Cases = () => {
+const Hvordan = () => {
     return ( 
-        <main>
+        <main className="main container">
             <h1>Dette er cases siden</h1>
 
             <h2>Spørgsmål 1</h2>
@@ -20,4 +20,4 @@ const Cases = () => {
      );
 }
  
-export default Cases;
+export default Hvordan;

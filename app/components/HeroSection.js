@@ -44,13 +44,9 @@ export default function HeroSection() {
                             <div className="line-box-grid">
                                 <div className="line-box span-12-5">
                                     <div className="line-box-body border-r">
-
-
-                                    <div className="hero-section-grid">
-                                        <SquaresGrid className="hero-squares" size={10} gap={15} hueRange={NaN} dynamic/> 
-                                    </div>
-
-
+                                        <div className="hero-section-grid">
+                                            <SquaresGrid className="hero-squares" size={10} gap={15} hueRange={NaN} dynamic/> 
+                                        </div>
                                     </div>
                                     <div className="line-box-corner-dots"><span></span><span></span><span></span><span></span></div>
                                 </div>
