@@ -76,7 +76,7 @@ export default function HeroSection() {
                                 </div>
                                 <div className="line-box span-12-3">
                                     <div className="line-box-body ">
-                                        <h1 className='title is-huge mb-5'>United Colors</h1>
+                                        <h1 className='title is-huge mb-5'>Din kreative kommunikations-partner</h1>
                                         <p className='hero-text'>Psarturient montes.</p>
 
                                     </div>
